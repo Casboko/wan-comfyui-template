@@ -1,25 +1,22 @@
-FROM nvidia/cuda:12.8.1-cudnn-devel-ubuntu24.04
+FROM runpod/pytorch:1.0.2-cu1281-torch280-ubuntu2404
 
 ENV DEBIAN_FRONTEND=noninteractive \
     PIP_PREFER_BINARY=1 \
+    PIP_NO_CACHE_DIR=1 \
     PYTHONUNBUFFERED=1 \
     CMAKE_BUILD_PARALLEL_LEVEL=8 \
     PATH="/opt/venv/bin:$PATH"
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-      python3.12 python3.12-venv python3.12-dev python3-pip \
+      python3-venv python3-dev python3-pip \
       curl ffmpeg ninja-build git git-lfs aria2 wget vim \
       libgl1 libglib2.0-0 build-essential gcc g++ \
       libgoogle-perftools4 ca-certificates && \
-    ln -sf /usr/bin/python3.12 /usr/bin/python && \
-    ln -sf /usr/bin/python3.12 /usr/bin/python3 && \
-    ln -sf /usr/bin/pip3 /usr/bin/pip && \
-    python3.12 -m venv /opt/venv && \
+    python3 -m venv --system-site-packages /opt/venv && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN pip install --upgrade pip setuptools wheel packaging
-RUN pip install --index-url https://download.pytorch.org/whl/nightly/cu128 --pre torch torchvision torchaudio
 RUN pip install \
       comfy-cli \
       jupyterlab jupyterlab-lsp \
