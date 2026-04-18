@@ -1,0 +1,708 @@
+{
+  "id": "runpod_default_loras_v1",
+  "description": "Default RunPod LoRA preset for wan_comfyui_template. 35 pairs / 70 files.",
+  "items": [
+    {
+      "id": "nsfw-motion-enhancer-high",
+      "category": "base",
+      "pair": "high",
+      "version_id": "2263030",
+      "target_dir": "loras/runpod_default/base",
+      "target_name": "nsfw-motion-enhancer-high.safetensors",
+      "model_url": "https://civitai.com/models/1985613",
+      "version_url": "https://civitai.com/models/1985613?modelVersionId=2263030"
+    },
+    {
+      "id": "nsfw-motion-enhancer-low",
+      "category": "base",
+      "pair": "low",
+      "version_id": "2263094",
+      "target_dir": "loras/runpod_default/base",
+      "target_name": "nsfw-motion-enhancer-low.safetensors",
+      "model_url": "https://civitai.com/models/1985613",
+      "version_url": "https://civitai.com/models/1985613?modelVersionId=2263094"
+    },
+    {
+      "id": "reward-lora-high",
+      "category": "enhancement",
+      "pair": "high",
+      "version_id": "2293529",
+      "target_dir": "loras/runpod_default/enhancement",
+      "target_name": "reward-lora-high.safetensors",
+      "model_url": "https://civitai.com/models/1985613",
+      "version_url": "https://civitai.com/models/1985613?modelVersionId=2293529"
+    },
+    {
+      "id": "reward-lora-low",
+      "category": "enhancement",
+      "pair": "low",
+      "version_id": "2293622",
+      "target_dir": "loras/runpod_default/enhancement",
+      "target_name": "reward-lora-low.safetensors",
+      "model_url": "https://civitai.com/models/1985613",
+      "version_url": "https://civitai.com/models/1985613?modelVersionId=2293622"
+    },
+    {
+      "id": "emotional-breakdown-high",
+      "category": "enhancement",
+      "pair": "high",
+      "version_id": "2377549",
+      "target_dir": "loras/runpod_default/enhancement",
+      "target_name": "emotional-breakdown-high.safetensors",
+      "model_url": "https://civitai.com/models/2071400/emotional-breakdown-helper-for-sadness-anger-etc",
+      "version_url": "https://civitai.com/models/2071400?modelVersionId=2377549"
+    },
+    {
+      "id": "emotional-breakdown-low",
+      "category": "enhancement",
+      "pair": "low",
+      "version_id": "2377566",
+      "target_dir": "loras/runpod_default/enhancement",
+      "target_name": "emotional-breakdown-low.safetensors",
+      "model_url": "https://civitai.com/models/2071400/emotional-breakdown-helper-for-sadness-anger-etc",
+      "version_url": "https://civitai.com/models/2071400?modelVersionId=2377566"
+    },
+    {
+      "id": "pov-missionary-high",
+      "category": "actions_vaginal",
+      "pair": "high",
+      "version_id": "2098405",
+      "target_dir": "loras/runpod_default/actions_vaginal",
+      "target_name": "pov-missionary-high.safetensors",
+      "model_url": "https://civitai.com/models/1331682",
+      "version_url": "https://civitai.com/models/1331682?modelVersionId=2098405"
+    },
+    {
+      "id": "pov-missionary-low",
+      "category": "actions_vaginal",
+      "pair": "low",
+      "version_id": "2098396",
+      "target_dir": "loras/runpod_default/actions_vaginal",
+      "target_name": "pov-missionary-low.safetensors",
+      "model_url": "https://civitai.com/models/1331682",
+      "version_url": "https://civitai.com/models/1331682?modelVersionId=2098396"
+    },
+    {
+      "id": "pov-missionary-insertion-high",
+      "category": "actions_vaginal",
+      "pair": "high",
+      "version_id": "2245356",
+      "target_dir": "loras/runpod_default/actions_vaginal",
+      "target_name": "pov-missionary-insertion-high.safetensors",
+      "model_url": "https://civitai.com/models/1983608",
+      "version_url": "https://civitai.com/models/1983608?modelVersionId=2245356"
+    },
+    {
+      "id": "pov-missionary-insertion-low",
+      "category": "actions_vaginal",
+      "pair": "low",
+      "version_id": "2245426",
+      "target_dir": "loras/runpod_default/actions_vaginal",
+      "target_name": "pov-missionary-insertion-low.safetensors",
+      "model_url": "https://civitai.com/models/1983608",
+      "version_url": "https://civitai.com/models/1983608?modelVersionId=2245426"
+    },
+    {
+      "id": "sex-from-behind-high",
+      "category": "actions_vaginal",
+      "pair": "high",
+      "version_id": "2545249",
+      "target_dir": "loras/runpod_default/actions_vaginal",
+      "target_name": "sex-from-behind-high.safetensors",
+      "model_url": "https://civitai.com/models/2227622/i2v-sex-from-behind-front-facing",
+      "version_url": "https://civitai.com/models/2227622?modelVersionId=2545249"
+    },
+    {
+      "id": "sex-from-behind-low",
+      "category": "actions_vaginal",
+      "pair": "low",
+      "version_id": "2545246",
+      "target_dir": "loras/runpod_default/actions_vaginal",
+      "target_name": "sex-from-behind-low.safetensors",
+      "model_url": "https://civitai.com/models/2227622/i2v-sex-from-behind-front-facing",
+      "version_url": "https://civitai.com/models/2227622?modelVersionId=2545246"
+    },
+    {
+      "id": "cowgirl-reverse-cowgirl-high",
+      "category": "actions_vaginal",
+      "pair": "high",
+      "version_id": "2156392",
+      "target_dir": "loras/runpod_default/actions_vaginal",
+      "target_name": "cowgirl-reverse-cowgirl-high.safetensors",
+      "model_url": "https://civitai.com/models/1428098",
+      "version_url": "https://civitai.com/models/1428098?modelVersionId=2156392"
+    },
+    {
+      "id": "cowgirl-reverse-cowgirl-low",
+      "category": "actions_vaginal",
+      "pair": "low",
+      "version_id": "2156435",
+      "target_dir": "loras/runpod_default/actions_vaginal",
+      "target_name": "cowgirl-reverse-cowgirl-low.safetensors",
+      "model_url": "https://civitai.com/models/1428098",
+      "version_url": "https://civitai.com/models/1428098?modelVersionId=2156435"
+    },
+    {
+      "id": "pov-cowgirl-high",
+      "category": "actions_vaginal",
+      "pair": "high",
+      "version_id": "2169837",
+      "target_dir": "loras/runpod_default/actions_vaginal",
+      "target_name": "pov-cowgirl-high.safetensors",
+      "model_url": "https://civitai.com/models/1874099",
+      "version_url": "https://civitai.com/models/1874099?modelVersionId=2169837"
+    },
+    {
+      "id": "pov-cowgirl-low",
+      "category": "actions_vaginal",
+      "pair": "low",
+      "version_id": "2169847",
+      "target_dir": "loras/runpod_default/actions_vaginal",
+      "target_name": "pov-cowgirl-low.safetensors",
+      "model_url": "https://civitai.com/models/1874099",
+      "version_url": "https://civitai.com/models/1874099?modelVersionId=2169847"
+    },
+    {
+      "id": "pov-riding-high",
+      "category": "actions_vaginal",
+      "pair": "high",
+      "version_id": "2648813",
+      "target_dir": "loras/runpod_default/actions_vaginal",
+      "target_name": "pov-riding-high.safetensors",
+      "model_url": "https://civitai.com/models/2215920/pov-riding",
+      "version_url": "https://civitai.com/models/2215920?modelVersionId=2648813"
+    },
+    {
+      "id": "pov-riding-low",
+      "category": "actions_vaginal",
+      "pair": "low",
+      "version_id": "2648814",
+      "target_dir": "loras/runpod_default/actions_vaginal",
+      "target_name": "pov-riding-low.safetensors",
+      "model_url": "https://civitai.com/models/2215920/pov-riding",
+      "version_url": "https://civitai.com/models/2215920?modelVersionId=2648814"
+    },
+    {
+      "id": "mating-press-high",
+      "category": "actions_vaginal",
+      "pair": "high",
+      "version_id": "2663475",
+      "target_dir": "loras/runpod_default/actions_vaginal",
+      "target_name": "mating-press-high.safetensors",
+      "model_url": "https://civitai.com/models/2368333",
+      "version_url": "https://civitai.com/models/2368333?modelVersionId=2663475"
+    },
+    {
+      "id": "mating-press-low",
+      "category": "actions_vaginal",
+      "pair": "low",
+      "version_id": "2663487",
+      "target_dir": "loras/runpod_default/actions_vaginal",
+      "target_name": "mating-press-low.safetensors",
+      "model_url": "https://civitai.com/models/2368333",
+      "version_url": "https://civitai.com/models/2368333?modelVersionId=2663487"
+    },
+    {
+      "id": "penis-insert-high",
+      "category": "actions_vaginal",
+      "pair": "high",
+      "version_id": "2377035",
+      "target_dir": "loras/runpod_default/actions_vaginal",
+      "target_name": "penis-insert-high.safetensors",
+      "model_url": "https://civitai.com/models/2100959/penis-insert-wan22",
+      "version_url": "https://civitai.com/models/2100959?modelVersionId=2377035"
+    },
+    {
+      "id": "penis-insert-low",
+      "category": "actions_vaginal",
+      "pair": "low",
+      "version_id": "2377244",
+      "target_dir": "loras/runpod_default/actions_vaginal",
+      "target_name": "penis-insert-low.safetensors",
+      "model_url": "https://civitai.com/models/2100959/penis-insert-wan22",
+      "version_url": "https://civitai.com/models/2100959?modelVersionId=2377244"
+    },
+    {
+      "id": "dr34mjob-blowjob-high",
+      "category": "actions_oral",
+      "pair": "high",
+      "version_id": "2235299",
+      "target_dir": "loras/runpod_default/actions_oral",
+      "target_name": "dr34mjob-blowjob-high.safetensors",
+      "model_url": "https://civitai.com/models/1395313",
+      "version_url": "https://civitai.com/models/1395313?modelVersionId=2235299"
+    },
+    {
+      "id": "dr34mjob-blowjob-low",
+      "category": "actions_oral",
+      "pair": "low",
+      "version_id": "2235288",
+      "target_dir": "loras/runpod_default/actions_oral",
+      "target_name": "dr34mjob-blowjob-low.safetensors",
+      "model_url": "https://civitai.com/models/1395313",
+      "version_url": "https://civitai.com/models/1395313?modelVersionId=2235288"
+    },
+    {
+      "id": "ultimate-deepthroat-high",
+      "category": "actions_oral",
+      "pair": "high",
+      "version_id": "2325788",
+      "target_dir": "loras/runpod_default/actions_oral",
+      "target_name": "ultimate-deepthroat-high.safetensors",
+      "model_url": "https://civitai.com/models/1874811",
+      "version_url": "https://civitai.com/models/1874811?modelVersionId=2325788"
+    },
+    {
+      "id": "ultimate-deepthroat-low",
+      "category": "actions_oral",
+      "pair": "low",
+      "version_id": "2191446",
+      "target_dir": "loras/runpod_default/actions_oral",
+      "target_name": "ultimate-deepthroat-low.safetensors",
+      "model_url": "https://civitai.com/models/1874811",
+      "version_url": "https://civitai.com/models/1874811?modelVersionId=2191446"
+    },
+    {
+      "id": "deepthroat-dasiwa-high",
+      "category": "actions_oral",
+      "pair": "high",
+      "version_id": "2441730",
+      "target_dir": "loras/runpod_default/actions_oral",
+      "target_name": "deepthroat-dasiwa-high.safetensors",
+      "model_url": "https://civitai.com/models/2168276",
+      "version_url": "https://civitai.com/models/2168276?modelVersionId=2441730"
+    },
+    {
+      "id": "deepthroat-dasiwa-low",
+      "category": "actions_oral",
+      "pair": "low",
+      "version_id": "2445044",
+      "target_dir": "loras/runpod_default/actions_oral",
+      "target_name": "deepthroat-dasiwa-low.safetensors",
+      "model_url": "https://civitai.com/models/2168276",
+      "version_url": "https://civitai.com/models/2168276?modelVersionId=2445044"
+    },
+    {
+      "id": "cunnilingus-high",
+      "category": "actions_oral",
+      "pair": "high",
+      "version_id": "2212384",
+      "target_dir": "loras/runpod_default/actions_oral",
+      "target_name": "cunnilingus-high.safetensors",
+      "model_url": "https://civitai.com/models/1954774",
+      "version_url": "https://civitai.com/models/1954774?modelVersionId=2212384"
+    },
+    {
+      "id": "cunnilingus-low",
+      "category": "actions_oral",
+      "pair": "low",
+      "version_id": "2212394",
+      "target_dir": "loras/runpod_default/actions_oral",
+      "target_name": "cunnilingus-low.safetensors",
+      "model_url": "https://civitai.com/models/1954774",
+      "version_url": "https://civitai.com/models/1954774?modelVersionId=2212394"
+    },
+    {
+      "id": "handjob-high",
+      "category": "actions_manual",
+      "pair": "high",
+      "version_id": "2352366",
+      "target_dir": "loras/runpod_default/actions_manual",
+      "target_name": "handjob-high.safetensors",
+      "model_url": "https://civitai.com/models/2078995/wan-22-i2v-handjob-onetwo-handed",
+      "version_url": "https://civitai.com/models/2078995?modelVersionId=2352366"
+    },
+    {
+      "id": "handjob-low",
+      "category": "actions_manual",
+      "pair": "low",
+      "version_id": "2352388",
+      "target_dir": "loras/runpod_default/actions_manual",
+      "target_name": "handjob-low.safetensors",
+      "model_url": "https://civitai.com/models/2078995/wan-22-i2v-handjob-onetwo-handed",
+      "version_url": "https://civitai.com/models/2078995?modelVersionId=2352388"
+    },
+    {
+      "id": "french-kiss-high",
+      "category": "actions_manual",
+      "pair": "high",
+      "version_id": "2445168",
+      "target_dir": "loras/runpod_default/actions_manual",
+      "target_name": "french-kiss-high.safetensors",
+      "model_url": "https://civitai.com/models/2171333/wan22-french-kiss-i2vt2v",
+      "version_url": "https://civitai.com/models/2171333?modelVersionId=2445168"
+    },
+    {
+      "id": "french-kiss-low",
+      "category": "actions_manual",
+      "pair": "low",
+      "version_id": "2445176",
+      "target_dir": "loras/runpod_default/actions_manual",
+      "target_name": "french-kiss-low.safetensors",
+      "model_url": "https://civitai.com/models/2171333/wan22-french-kiss-i2vt2v",
+      "version_url": "https://civitai.com/models/2171333?modelVersionId=2445176"
+    },
+    {
+      "id": "orgasm-high",
+      "category": "actions_manual",
+      "pair": "high",
+      "version_id": "2187729",
+      "target_dir": "loras/runpod_default/actions_manual",
+      "target_name": "orgasm-high.safetensors",
+      "model_url": "https://civitai.com/models/1932929/wan-22-i2v-orgasm-o-face",
+      "version_url": "https://civitai.com/models/1932929?modelVersionId=2187729"
+    },
+    {
+      "id": "orgasm-low",
+      "category": "actions_manual",
+      "pair": "low",
+      "version_id": "2187757",
+      "target_dir": "loras/runpod_default/actions_manual",
+      "target_name": "orgasm-low.safetensors",
+      "model_url": "https://civitai.com/models/1932929/wan-22-i2v-orgasm-o-face",
+      "version_url": "https://civitai.com/models/1932929?modelVersionId=2187757"
+    },
+    {
+      "id": "breast-play-k420-high",
+      "category": "actions_manual",
+      "pair": "high",
+      "version_id": "2448064",
+      "target_dir": "loras/runpod_default/actions_manual",
+      "target_name": "breast-play-k420-high.safetensors",
+      "model_url": "https://civitai.com/models/1913617",
+      "version_url": "https://civitai.com/models/1913617?modelVersionId=2448064"
+    },
+    {
+      "id": "breast-play-k420-low",
+      "category": "actions_manual",
+      "pair": "low",
+      "version_id": "2448070",
+      "target_dir": "loras/runpod_default/actions_manual",
+      "target_name": "breast-play-k420-low.safetensors",
+      "model_url": "https://civitai.com/models/1913617",
+      "version_url": "https://civitai.com/models/1913617?modelVersionId=2448070"
+    },
+    {
+      "id": "fingering-pussy-high",
+      "category": "actions_solo",
+      "pair": "high",
+      "version_id": "2272024",
+      "target_dir": "loras/runpod_default/actions_solo",
+      "target_name": "fingering-pussy-high.safetensors",
+      "model_url": "https://civitai.com/models/2007360/wan-fingering-pussy",
+      "version_url": "https://civitai.com/models/2007360?modelVersionId=2272024"
+    },
+    {
+      "id": "fingering-pussy-low",
+      "category": "actions_solo",
+      "pair": "low",
+      "version_id": "2272102",
+      "target_dir": "loras/runpod_default/actions_solo",
+      "target_name": "fingering-pussy-low.safetensors",
+      "model_url": "https://civitai.com/models/2007360/wan-fingering-pussy",
+      "version_url": "https://civitai.com/models/2007360?modelVersionId=2272102"
+    },
+    {
+      "id": "masturbation-handjob-high",
+      "category": "actions_solo",
+      "pair": "high",
+      "version_id": "2620366",
+      "target_dir": "loras/runpod_default/actions_solo",
+      "target_name": "masturbation-handjob-high.safetensors",
+      "model_url": "https://civitai.com/models/2329422",
+      "version_url": "https://civitai.com/models/2329422?modelVersionId=2620366",
+      "notes": "trigger: handj0b"
+    },
+    {
+      "id": "masturbation-handjob-low",
+      "category": "actions_solo",
+      "pair": "low",
+      "version_id": "2622170",
+      "target_dir": "loras/runpod_default/actions_solo",
+      "target_name": "masturbation-handjob-low.safetensors",
+      "model_url": "https://civitai.com/models/2329422",
+      "version_url": "https://civitai.com/models/2329422?modelVersionId=2622170",
+      "notes": "trigger: handj0b"
+    },
+    {
+      "id": "gay-anal-sex-high",
+      "category": "actions_specialty",
+      "pair": "high",
+      "version_id": "2785769",
+      "target_dir": "loras/runpod_default/actions_specialty",
+      "target_name": "gay-anal-sex-high.safetensors",
+      "model_url": "https://civitai.com/models/2206922",
+      "version_url": "https://civitai.com/models/2206922?modelVersionId=2785769"
+    },
+    {
+      "id": "gay-anal-sex-low",
+      "category": "actions_specialty",
+      "pair": "low",
+      "version_id": "2786571",
+      "target_dir": "loras/runpod_default/actions_specialty",
+      "target_name": "gay-anal-sex-low.safetensors",
+      "model_url": "https://civitai.com/models/2206922",
+      "version_url": "https://civitai.com/models/2206922?modelVersionId=2786571"
+    },
+    {
+      "id": "sexy-move-high",
+      "category": "actions_motion",
+      "pair": "high",
+      "version_id": "2510280",
+      "target_dir": "loras/runpod_default/actions_motion",
+      "target_name": "sexy-move-high.safetensors",
+      "model_url": "https://civitai.com/models/2229846",
+      "version_url": "https://civitai.com/models/2229846?modelVersionId=2510280"
+    },
+    {
+      "id": "sexy-move-low",
+      "category": "actions_motion",
+      "pair": "low",
+      "version_id": "2510218",
+      "target_dir": "loras/runpod_default/actions_motion",
+      "target_name": "sexy-move-low.safetensors",
+      "model_url": "https://civitai.com/models/2229846",
+      "version_url": "https://civitai.com/models/2229846?modelVersionId=2510218"
+    },
+    {
+      "id": "bouncing-breasts-high",
+      "category": "effects_physics",
+      "pair": "high",
+      "version_id": "2595899",
+      "target_dir": "loras/runpod_default/effects_physics",
+      "target_name": "bouncing-breasts-high.safetensors",
+      "model_url": "https://civitai.com/models/1581186",
+      "version_url": "https://civitai.com/models/1581186?modelVersionId=2595899"
+    },
+    {
+      "id": "bouncing-breasts-low",
+      "category": "effects_physics",
+      "pair": "low",
+      "version_id": "2595905",
+      "target_dir": "loras/runpod_default/effects_physics",
+      "target_name": "bouncing-breasts-low.safetensors",
+      "model_url": "https://civitai.com/models/1581186",
+      "version_url": "https://civitai.com/models/1581186?modelVersionId=2595905"
+    },
+    {
+      "id": "jellyhips-high",
+      "category": "effects_physics",
+      "pair": "high",
+      "version_id": "2303927",
+      "target_dir": "loras/runpod_default/effects_physics",
+      "target_name": "jellyhips-high.safetensors",
+      "model_url": "https://civitai.com/models/1989711",
+      "version_url": "https://civitai.com/models/1989711?modelVersionId=2303927"
+    },
+    {
+      "id": "jellyhips-low",
+      "category": "effects_physics",
+      "pair": "low",
+      "version_id": "2303966",
+      "target_dir": "loras/runpod_default/effects_physics",
+      "target_name": "jellyhips-low.safetensors",
+      "model_url": "https://civitai.com/models/1989711",
+      "version_url": "https://civitai.com/models/1989711?modelVersionId=2303966"
+    },
+    {
+      "id": "stomach-bulge-high",
+      "category": "effects_physics",
+      "pair": "high",
+      "version_id": "2308339",
+      "target_dir": "loras/runpod_default/effects_physics",
+      "target_name": "stomach-bulge-high.safetensors",
+      "model_url": "https://civitai.com/models/1985613",
+      "version_url": "https://civitai.com/models/1985613?modelVersionId=2308339"
+    },
+    {
+      "id": "stomach-bulge-low",
+      "category": "effects_physics",
+      "pair": "low",
+      "version_id": "2308328",
+      "target_dir": "loras/runpod_default/effects_physics",
+      "target_name": "stomach-bulge-low.safetensors",
+      "model_url": "https://civitai.com/models/1985613",
+      "version_url": "https://civitai.com/models/1985613?modelVersionId=2308328"
+    },
+    {
+      "id": "facial-cumshot-high",
+      "category": "effects_fluid",
+      "pair": "high",
+      "version_id": "2176450",
+      "target_dir": "loras/runpod_default/effects_fluid",
+      "target_name": "facial-cumshot-high.safetensors",
+      "model_url": "https://civitai.com/models/1922973",
+      "version_url": "https://civitai.com/models/1922973?modelVersionId=2176450"
+    },
+    {
+      "id": "facial-cumshot-low",
+      "category": "effects_fluid",
+      "pair": "low",
+      "version_id": "2178869",
+      "target_dir": "loras/runpod_default/effects_fluid",
+      "target_name": "facial-cumshot-low.safetensors",
+      "model_url": "https://civitai.com/models/1922973",
+      "version_url": "https://civitai.com/models/1922973?modelVersionId=2178869"
+    },
+    {
+      "id": "cum-facial-high",
+      "category": "effects_fluid",
+      "pair": "high",
+      "version_id": "2460386",
+      "target_dir": "loras/runpod_default/effects_fluid",
+      "target_name": "cum-facial-high.safetensors",
+      "model_url": "https://civitai.com/models/1962545",
+      "version_url": "https://civitai.com/models/1962545?modelVersionId=2460386"
+    },
+    {
+      "id": "cum-facial-low",
+      "category": "effects_fluid",
+      "pair": "low",
+      "version_id": "2460428",
+      "target_dir": "loras/runpod_default/effects_fluid",
+      "target_name": "cum-facial-low.safetensors",
+      "model_url": "https://civitai.com/models/1962545",
+      "version_url": "https://civitai.com/models/1962545?modelVersionId=2460428"
+    },
+    {
+      "id": "creampie-anime-high",
+      "category": "effects_fluid",
+      "pair": "high",
+      "version_id": "2197409",
+      "target_dir": "loras/runpod_default/effects_fluid",
+      "target_name": "creampie-anime-high.safetensors",
+      "model_url": "https://civitai.com/models/1941545",
+      "version_url": "https://civitai.com/models/1941545?modelVersionId=2197409"
+    },
+    {
+      "id": "creampie-anime-low",
+      "category": "effects_fluid",
+      "pair": "low",
+      "version_id": "2215731",
+      "target_dir": "loras/runpod_default/effects_fluid",
+      "target_name": "creampie-anime-low.safetensors",
+      "model_url": "https://civitai.com/models/1941545",
+      "version_url": "https://civitai.com/models/1941545?modelVersionId=2215731"
+    },
+    {
+      "id": "cumshot-mouth-high",
+      "category": "effects_fluid",
+      "pair": "high",
+      "version_id": "2430424",
+      "target_dir": "loras/runpod_default/effects_fluid",
+      "target_name": "cumshot-mouth-high.safetensors",
+      "model_url": "https://civitai.com/models/2148595/mouthfull-cumshot-i2v-wan-22-video-lora-k3nk",
+      "version_url": "https://civitai.com/models/2148595?modelVersionId=2430424"
+    },
+    {
+      "id": "cumshot-mouth-low",
+      "category": "effects_fluid",
+      "pair": "low",
+      "version_id": "2430183",
+      "target_dir": "loras/runpod_default/effects_fluid",
+      "target_name": "cumshot-mouth-low.safetensors",
+      "model_url": "https://civitai.com/models/2148595/mouthfull-cumshot-i2v-wan-22-video-lora-k3nk",
+      "version_url": "https://civitai.com/models/2148595?modelVersionId=2430183"
+    },
+    {
+      "id": "fluidcore-high",
+      "category": "effects_fluid",
+      "pair": "high",
+      "version_id": "2303232",
+      "target_dir": "loras/runpod_default/effects_fluid",
+      "target_name": "fluidcore-high.safetensors",
+      "model_url": "https://civitai.com/models/1985613",
+      "version_url": "https://civitai.com/models/1985613?modelVersionId=2303232"
+    },
+    {
+      "id": "fluidcore-low",
+      "category": "effects_fluid",
+      "pair": "low",
+      "version_id": "2303184",
+      "target_dir": "loras/runpod_default/effects_fluid",
+      "target_name": "fluidcore-low.safetensors",
+      "model_url": "https://civitai.com/models/1985613",
+      "version_url": "https://civitai.com/models/1985613?modelVersionId=2303184"
+    },
+    {
+      "id": "edible-anus-high",
+      "category": "effects_fluid",
+      "pair": "high",
+      "version_id": "2438671",
+      "target_dir": "loras/runpod_default/effects_fluid",
+      "target_name": "edible-anus-high.safetensors",
+      "model_url": "https://civitai.com/models/2143379",
+      "version_url": "https://civitai.com/models/2143379?modelVersionId=2438671"
+    },
+    {
+      "id": "edible-anus-low",
+      "category": "effects_fluid",
+      "pair": "low",
+      "version_id": "2433303",
+      "target_dir": "loras/runpod_default/effects_fluid",
+      "target_name": "edible-anus-low.safetensors",
+      "model_url": "https://civitai.com/models/2143379",
+      "version_url": "https://civitai.com/models/2143379?modelVersionId=2433303"
+    },
+    {
+      "id": "orbit-cam-high",
+      "category": "camera",
+      "pair": "high",
+      "version_id": "2373814",
+      "target_dir": "loras/runpod_default/camera",
+      "target_name": "orbit-cam-high.safetensors",
+      "model_url": "https://civitai.com/models/2093287",
+      "version_url": "https://civitai.com/models/2093287?modelVersionId=2373814"
+    },
+    {
+      "id": "orbit-cam-low",
+      "category": "camera",
+      "pair": "low",
+      "version_id": "2373843",
+      "target_dir": "loras/runpod_default/camera",
+      "target_name": "orbit-cam-low.safetensors",
+      "model_url": "https://civitai.com/models/2093287",
+      "version_url": "https://civitai.com/models/2093287?modelVersionId=2373843"
+    },
+    {
+      "id": "cinematic-closeup-high",
+      "category": "style",
+      "pair": "high",
+      "version_id": "2779234",
+      "target_dir": "loras/runpod_default/style",
+      "target_name": "cinematic-closeup-high.safetensors",
+      "model_url": "https://civitai.com/models/2471910",
+      "version_url": "https://civitai.com/models/2471910?modelVersionId=2779234"
+    },
+    {
+      "id": "cinematic-closeup-low",
+      "category": "style",
+      "pair": "low",
+      "version_id": "2779292",
+      "target_dir": "loras/runpod_default/style",
+      "target_name": "cinematic-closeup-low.safetensors",
+      "model_url": "https://civitai.com/models/2471910",
+      "version_url": "https://civitai.com/models/2471910?modelVersionId=2779292"
+    },
+    {
+      "id": "anime-style-high",
+      "category": "style",
+      "pair": "high",
+      "version_id": "2516837",
+      "target_dir": "loras/runpod_default/style",
+      "target_name": "anime-style-high.safetensors",
+      "model_url": "https://civitai.com/models/2222779/anime-style-wan-22-i2v",
+      "version_url": "https://civitai.com/models/2222779?modelVersionId=2516837"
+    },
+    {
+      "id": "anime-style-low",
+      "category": "style",
+      "pair": "low",
+      "version_id": "2516839",
+      "target_dir": "loras/runpod_default/style",
+      "target_name": "anime-style-low.safetensors",
+      "model_url": "https://civitai.com/models/2222779/anime-style-wan-22-i2v",
+      "version_url": "https://civitai.com/models/2222779?modelVersionId=2516839"
+    }
+  ]
+}

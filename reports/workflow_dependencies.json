@@ -1,0 +1,1417 @@
+{
+  "workflows": [
+    {
+      "workflow": "template_workflows/Wan2.2_I2V_SVI_Kenpechi_Workflow_v3.5 12Sec (3).json",
+      "node_packs": [
+        {
+          "pack_id": "GetNode",
+          "cnr_ids": [],
+          "aux_ids": [
+            "GetNode"
+          ],
+          "versions": [],
+          "node_types": [
+            "GetNode"
+          ],
+          "repo_url": "https://github.com/yolain/ComfyUI-Easy-Use.git"
+        },
+        {
+          "pack_id": "SetNode",
+          "cnr_ids": [],
+          "aux_ids": [
+            "SetNode"
+          ],
+          "versions": [],
+          "node_types": [
+            "SetNode"
+          ],
+          "repo_url": "https://github.com/yolain/ComfyUI-Easy-Use.git"
+        },
+        {
+          "pack_id": "comfy-core",
+          "cnr_ids": [
+            "comfy-core"
+          ],
+          "aux_ids": [],
+          "versions": [
+            "0.10.0",
+            "0.13.0",
+            "0.3.34",
+            "0.3.45",
+            "0.3.48",
+            "0.3.53",
+            "0.3.59",
+            "0.3.60",
+            "0.8.2",
+            "0.9.1"
+          ],
+          "node_types": [
+            "099e21e6-4e70-4a4a-a2db-cf5220bf0be3",
+            "24a590b2-9fca-4008-bc62-b5fb3d62cc11",
+            "25ef21e7-7883-436e-9b24-03db2d6ca54e",
+            "37348c84-40de-47ac-a101-071ed08b4da9",
+            "40d4748d-3539-4009-969f-2dfc1edc5e03",
+            "445a9c88-df7d-4bf4-89ca-795e4b96e34a",
+            "4ef918bd-d582-459b-9203-c53b406a39e1",
+            "5105922f-605f-44a0-9b6a-e1bf117a581c",
+            "54bfea02-e78a-4e01-889f-86e73a604925",
+            "576ed844-4015-4ec4-8c8d-855f4750c0ed",
+            "640b0060-0f56-4d12-a8b3-34d913c73a37",
+            "76f6480c-c7ae-4122-8bd8-2a3ddea6e77a",
+            "7756973f-4070-4416-9ed7-84e06e5c0229",
+            "77a2adc8-bf0f-44cd-b711-7dae927532d5",
+            "7e18faff-9828-46df-aed4-a3914b0f5691",
+            "8267ddec-4ec9-4cc1-a44f-b70eee30c60e",
+            "885eb5a2-5242-49cc-b817-2369e3c4a047",
+            "8c68437a-5a59-421d-bf97-79c5358ad235",
+            "8fefc7ad-9146-4e2c-873e-7583a0a88433",
+            "9e65301f-0e9c-46a9-8b32-5ad4ffabad4c",
+            "CLIPLoader",
+            "CLIPTextEncode",
+            "CLIPVisionEncode",
+            "CLIPVisionLoader",
+            "ImageScaleBy",
+            "ImageUpscaleWithModel",
+            "LoadImage",
+            "LoraLoaderModelOnly",
+            "ModelSamplingSD3",
+            "PrimitiveFloat",
+            "UNETLoader",
+            "UpscaleModelLoader",
+            "VAELoader",
+            "a1b8da11-cf2e-48c1-b1e4-dfd62f0eb372",
+            "e486c044-f605-49f7-8feb-45f303a5a82f",
+            "efb4bcb7-4c1c-40c2-8ba3-5347061408d9",
+            "f4344010-23c2-43f5-bcfe-d3eb5ec92e25"
+          ],
+          "repo_url": null
+        },
+        {
+          "pack_id": "comfyui-custom-scripts",
+          "cnr_ids": [
+            "comfyui-custom-scripts"
+          ],
+          "aux_ids": [],
+          "versions": [
+            "f2838ed5e59de4d73cde5c98354b87a8d3200190"
+          ],
+          "node_types": [
+            "MathExpression|pysssss"
+          ],
+          "repo_url": "https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git"
+        },
+        {
+          "pack_id": "comfyui-gguf",
+          "cnr_ids": [
+            "comfyui-gguf"
+          ],
+          "aux_ids": [],
+          "versions": [
+            "1.1.10"
+          ],
+          "node_types": [
+            "UnetLoaderGGUF"
+          ],
+          "repo_url": "https://github.com/city96/ComfyUI-GGUF.git"
+        },
+        {
+          "pack_id": "comfyui-kjnodes",
+          "cnr_ids": [
+            "comfyui-kjnodes"
+          ],
+          "aux_ids": [
+            "kijai/ComfyUI-KJNodes"
+          ],
+          "versions": [
+            "1.1.3",
+            "1.1.4",
+            "9d7af919b91838fb22e31ad0107a6ddcf8bd7f3f"
+          ],
+          "node_types": [
+            "INTConstant",
+            "ImageResizeKJv2",
+            "ModelPatchTorchSettings",
+            "PathchSageAttentionKJ"
+          ],
+          "repo_url": "https://github.com/kijai/ComfyUI-KJNodes.git"
+        },
+        {
+          "pack_id": "rgthree-comfy",
+          "cnr_ids": [
+            "rgthree-comfy"
+          ],
+          "aux_ids": [],
+          "versions": [
+            "1.0.2512112053",
+            "8ff50e4521881eca1fe26aec9615fc9362474931"
+          ],
+          "node_types": [
+            "Context (rgthree)",
+            "Context Switch (rgthree)",
+            "Fast Groups Bypasser (rgthree)",
+            "Label (rgthree)",
+            "Power Lora Loader (rgthree)",
+            "Seed (rgthree)"
+          ],
+          "repo_url": "https://github.com/rgthree/rgthree-comfy.git"
+        },
+        {
+          "pack_id": "unknown",
+          "cnr_ids": [],
+          "aux_ids": [],
+          "versions": [],
+          "node_types": [
+            "Note"
+          ],
+          "repo_url": null
+        }
+      ],
+      "model_files": [
+        {
+          "filename": "0.GGUF",
+          "urls": []
+        },
+        {
+          "filename": "0.Safetensors",
+          "urls": []
+        },
+        {
+          "filename": "00.GGUF",
+          "urls": []
+        },
+        {
+          "filename": "00.Safetensors",
+          "urls": []
+        },
+        {
+          "filename": "23High noise-Cumshot Aesthetics.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "56Low noise-Cumshot Aesthetics.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "HIGH\\CloseUpFacialCum-v10_High.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "HIGH\\DR34ML4Y_HIGH_V2.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "HIGH\\Deepthroat-W22-I2V-HN.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "HIGH\\F4c3spl4sh-high-k3nk.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "HIGH\\HandjobBlowjobCombo-HIGH-v1.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "HIGH\\NSFW-22-H-e8.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "LOW\\CloseUpFacialCum-v10_Low.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "LOW\\DR34ML4Y_LOW_V2.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "LOW\\Deepthroat-W22-I2V-LN.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "LOW\\F4c3spl4sh-low-k3nk.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "LOW\\HandjobBlowjobCombo-LOW-v1.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "LOW\\NSFW-22-L-e8.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "LOW\\Oral-insertion-low-v1.0.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "NSFW-22-H-e8.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "NSFW-22-L-e8.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "RealESRGAN_x2plus.pth",
+          "urls": []
+        },
+        {
+          "filename": "SVI_v2_PRO_Wan2.2-I2V-A14B_HIGH_lora_rank_128_fp16.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "SVI_v2_PRO_Wan2.2-I2V-A14B_LOW_lora_rank_128_fp16.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "Wan2.2-I2V-A14B-HighNoise-Q8_0.gguf",
+          "urls": []
+        },
+        {
+          "filename": "Wan2.2-I2V-A14B-LowNoise-Q8_0.gguf",
+          "urls": []
+        },
+        {
+          "filename": "clip_vision_h.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "lightx2v_I2V_14B_480p_cfg_step_distill_rank64_bf16.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "rife49.pth",
+          "urls": []
+        },
+        {
+          "filename": "umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "wan2.2_i2v_A14b_high_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "wan2.2_i2v_A14b_low_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "wan2.2_i2v_high_noise_14B_fp16.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "wan2.2_i2v_low_noise_14B_fp16.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "wan_2.1_vae.safetensors",
+          "urls": []
+        }
+      ]
+    },
+    {
+      "workflow": "template_workflows/SVI pro.json",
+      "node_packs": [
+        {
+          "pack_id": "ComfyUI-Easy-Use",
+          "cnr_ids": [],
+          "aux_ids": [],
+          "versions": [],
+          "node_types": [
+            "GetNode",
+            "SetNode"
+          ],
+          "repo_url": "https://github.com/yolain/ComfyUI-Easy-Use.git"
+        },
+        {
+          "pack_id": "comfy-core",
+          "cnr_ids": [
+            "comfy-core"
+          ],
+          "aux_ids": [],
+          "versions": [
+            "0.3.50",
+            "0.3.59"
+          ],
+          "node_types": [
+            "CLIPLoader",
+            "CLIPTextEncode",
+            "KSamplerAdvanced",
+            "LoadImage",
+            "LoraLoaderModelOnly",
+            "ModelSamplingSD3",
+            "PrimitiveInt",
+            "UNETLoader",
+            "VAEDecode",
+            "VAELoader"
+          ],
+          "repo_url": null
+        },
+        {
+          "pack_id": "comfyui-easy-use",
+          "cnr_ids": [
+            "comfyui-easy-use"
+          ],
+          "aux_ids": [],
+          "versions": [
+            "1.3.3",
+            "3b224fbccde9bd35728348f9a4590dad6f603203"
+          ],
+          "node_types": [
+            "easy globalSeed",
+            "easy int"
+          ],
+          "repo_url": "https://github.com/yolain/ComfyUI-Easy-Use.git"
+        },
+        {
+          "pack_id": "comfyui-kjnodes",
+          "cnr_ids": [
+            "comfyui-kjnodes"
+          ],
+          "aux_ids": [],
+          "versions": [
+            "e11ca9793df5b9f32dda0677a7cfdc399bb91873"
+          ],
+          "node_types": [
+            "ImageBatchExtendWithOverlap"
+          ],
+          "repo_url": "https://github.com/kijai/ComfyUI-KJNodes.git"
+        },
+        {
+          "pack_id": "comfyui-videohelpersuite",
+          "cnr_ids": [
+            "comfyui-videohelpersuite"
+          ],
+          "aux_ids": [],
+          "versions": [
+            "3234937ff5f3ca19068aaba5042771514de2429d"
+          ],
+          "node_types": [
+            "VHS_VideoCombine"
+          ],
+          "repo_url": "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git"
+        },
+        {
+          "pack_id": "rgthree-comfy",
+          "cnr_ids": [],
+          "aux_ids": [],
+          "versions": [],
+          "node_types": [
+            "Fast Groups Bypasser (rgthree)"
+          ],
+          "repo_url": "https://github.com/rgthree/rgthree-comfy.git"
+        },
+        {
+          "pack_id": "unknown",
+          "cnr_ids": [],
+          "aux_ids": [],
+          "versions": [],
+          "node_types": [
+            "Note"
+          ],
+          "repo_url": null
+        },
+        {
+          "pack_id": "wan22fmlf",
+          "cnr_ids": [
+            "wan22fmlf"
+          ],
+          "aux_ids": [],
+          "versions": [
+            "9e8ef076985895916f07b069a713611d295b6014"
+          ],
+          "node_types": [
+            "WanAdvancedI2V"
+          ],
+          "repo_url": "https://github.com/wallen0322/ComfyUI-Wan22FMLF.git"
+        }
+      ],
+      "model_files": [
+        {
+          "filename": "//huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "//huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/blob/main/split_files/diffusion_models/wan2.2_i2v_high_noise_14B_fp16.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "//huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/blob/main/split_files/diffusion_models/wan2.2_i2v_low_noise_14B_fp16.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "//huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_i2v_high_noise_14B_fp16.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "//huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_i2v_low_noise_14B_fp16.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "//huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "//huggingface.co/Kijai/WanVideo_comfy/resolve/main/LoRAs/Stable-Video-Infinity/v2.0/SVI_v2_PRO_Wan2.2-I2V-A14B_HIGH_lora_rank_128_fp16.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "//huggingface.co/Kijai/WanVideo_comfy/resolve/main/LoRAs/Stable-Video-Infinity/v2.0/SVI_v2_PRO_Wan2.2-I2V-A14B_LOW_lora_rank_128_fp16.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "//huggingface.co/obsxrver/wan2.2-i2v-lightx2v-260412/blob/main/wan2.2_i2v_A14b_high_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "//huggingface.co/obsxrver/wan2.2-i2v-lightx2v-260412/blob/main/wan2.2_i2v_A14b_low_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "//huggingface.co/obsxrver/wan2.2-i2v-lightx2v-260412/resolve/main/wan2.2_i2v_A14b_high_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "//huggingface.co/obsxrver/wan2.2-i2v-lightx2v-260412/resolve/main/wan2.2_i2v_A14b_low_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "SVI_v2_PRO_Wan2.2-I2V-A14B_HIGH_lora_rank_128_fp16.safetensors",
+          "urls": [
+            "https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/LoRAs/Stable-Video-Infinity/v2.0/SVI_v2_PRO_Wan2.2-I2V-A14B_HIGH_lora_rank_128_fp16.safetensors"
+          ]
+        },
+        {
+          "filename": "SVI_v2_PRO_Wan2.2-I2V-A14B_LOW_lora_rank_128_fp16.safetensors",
+          "urls": [
+            "https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/LoRAs/Stable-Video-Infinity/v2.0/SVI_v2_PRO_Wan2.2-I2V-A14B_LOW_lora_rank_128_fp16.safetensors"
+          ]
+        },
+        {
+          "filename": "umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+          "urls": [
+            "https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors"
+          ]
+        },
+        {
+          "filename": "wan2.2_i2v_A14b_high_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+          "urls": [
+            "https://huggingface.co/obsxrver/wan2.2-i2v-lightx2v-260412/resolve/main/wan2.2_i2v_A14b_high_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors"
+          ]
+        },
+        {
+          "filename": "wan2.2_i2v_A14b_low_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+          "urls": [
+            "https://huggingface.co/obsxrver/wan2.2-i2v-lightx2v-260412/resolve/main/wan2.2_i2v_A14b_low_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors"
+          ]
+        },
+        {
+          "filename": "wan2.2_i2v_high_noise_14B_fp16.safetensors",
+          "urls": [
+            "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_i2v_high_noise_14B_fp16.safetensors"
+          ]
+        },
+        {
+          "filename": "wan2.2_i2v_low_noise_14B_fp16.safetensors",
+          "urls": [
+            "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_i2v_low_noise_14B_fp16.safetensors"
+          ]
+        },
+        {
+          "filename": "wan_2.1_vae.safetensors",
+          "urls": [
+            "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors"
+          ]
+        }
+      ]
+    },
+    {
+      "workflow": "template_workflows/Wan2.2_I2V_SVI_Kenpechi_Workflow_v3.5 12Sec FP8 260412.json",
+      "node_packs": [
+        {
+          "pack_id": "GetNode",
+          "cnr_ids": [],
+          "aux_ids": [
+            "GetNode"
+          ],
+          "versions": [],
+          "node_types": [
+            "GetNode"
+          ],
+          "repo_url": "https://github.com/yolain/ComfyUI-Easy-Use.git"
+        },
+        {
+          "pack_id": "SetNode",
+          "cnr_ids": [],
+          "aux_ids": [
+            "SetNode"
+          ],
+          "versions": [],
+          "node_types": [
+            "SetNode"
+          ],
+          "repo_url": "https://github.com/yolain/ComfyUI-Easy-Use.git"
+        },
+        {
+          "pack_id": "comfy-core",
+          "cnr_ids": [
+            "comfy-core"
+          ],
+          "aux_ids": [],
+          "versions": [
+            "0.10.0",
+            "0.13.0",
+            "0.3.34",
+            "0.3.45",
+            "0.3.48",
+            "0.3.53",
+            "0.3.59",
+            "0.3.60",
+            "0.8.2",
+            "0.9.1"
+          ],
+          "node_types": [
+            "099e21e6-4e70-4a4a-a2db-cf5220bf0be3",
+            "24a590b2-9fca-4008-bc62-b5fb3d62cc11",
+            "25ef21e7-7883-436e-9b24-03db2d6ca54e",
+            "37348c84-40de-47ac-a101-071ed08b4da9",
+            "40d4748d-3539-4009-969f-2dfc1edc5e03",
+            "445a9c88-df7d-4bf4-89ca-795e4b96e34a",
+            "4ef918bd-d582-459b-9203-c53b406a39e1",
+            "5105922f-605f-44a0-9b6a-e1bf117a581c",
+            "54bfea02-e78a-4e01-889f-86e73a604925",
+            "576ed844-4015-4ec4-8c8d-855f4750c0ed",
+            "640b0060-0f56-4d12-a8b3-34d913c73a37",
+            "76f6480c-c7ae-4122-8bd8-2a3ddea6e77a",
+            "7756973f-4070-4416-9ed7-84e06e5c0229",
+            "77a2adc8-bf0f-44cd-b711-7dae927532d5",
+            "7e18faff-9828-46df-aed4-a3914b0f5691",
+            "8267ddec-4ec9-4cc1-a44f-b70eee30c60e",
+            "885eb5a2-5242-49cc-b817-2369e3c4a047",
+            "8c68437a-5a59-421d-bf97-79c5358ad235",
+            "8fefc7ad-9146-4e2c-873e-7583a0a88433",
+            "9e65301f-0e9c-46a9-8b32-5ad4ffabad4c",
+            "CLIPLoader",
+            "CLIPTextEncode",
+            "CLIPVisionEncode",
+            "CLIPVisionLoader",
+            "ImageScaleBy",
+            "ImageUpscaleWithModel",
+            "LoadImage",
+            "LoraLoaderModelOnly",
+            "ModelSamplingSD3",
+            "PrimitiveFloat",
+            "UNETLoader",
+            "UpscaleModelLoader",
+            "VAELoader",
+            "a1b8da11-cf2e-48c1-b1e4-dfd62f0eb372",
+            "e486c044-f605-49f7-8feb-45f303a5a82f",
+            "efb4bcb7-4c1c-40c2-8ba3-5347061408d9",
+            "f4344010-23c2-43f5-bcfe-d3eb5ec92e25"
+          ],
+          "repo_url": null
+        },
+        {
+          "pack_id": "comfyui-custom-scripts",
+          "cnr_ids": [
+            "comfyui-custom-scripts"
+          ],
+          "aux_ids": [],
+          "versions": [
+            "f2838ed5e59de4d73cde5c98354b87a8d3200190"
+          ],
+          "node_types": [
+            "MathExpression|pysssss"
+          ],
+          "repo_url": "https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git"
+        },
+        {
+          "pack_id": "comfyui-gguf",
+          "cnr_ids": [
+            "comfyui-gguf"
+          ],
+          "aux_ids": [],
+          "versions": [
+            "1.1.10"
+          ],
+          "node_types": [
+            "UnetLoaderGGUF"
+          ],
+          "repo_url": "https://github.com/city96/ComfyUI-GGUF.git"
+        },
+        {
+          "pack_id": "comfyui-kjnodes",
+          "cnr_ids": [
+            "comfyui-kjnodes"
+          ],
+          "aux_ids": [
+            "kijai/ComfyUI-KJNodes"
+          ],
+          "versions": [
+            "1.1.3",
+            "1.1.4",
+            "9d7af919b91838fb22e31ad0107a6ddcf8bd7f3f"
+          ],
+          "node_types": [
+            "INTConstant",
+            "ImageResizeKJv2",
+            "ModelPatchTorchSettings",
+            "PathchSageAttentionKJ"
+          ],
+          "repo_url": "https://github.com/kijai/ComfyUI-KJNodes.git"
+        },
+        {
+          "pack_id": "rgthree-comfy",
+          "cnr_ids": [
+            "rgthree-comfy"
+          ],
+          "aux_ids": [],
+          "versions": [
+            "1.0.2512112053",
+            "8ff50e4521881eca1fe26aec9615fc9362474931"
+          ],
+          "node_types": [
+            "Context (rgthree)",
+            "Context Switch (rgthree)",
+            "Fast Groups Bypasser (rgthree)",
+            "Label (rgthree)",
+            "Power Lora Loader (rgthree)",
+            "Seed (rgthree)"
+          ],
+          "repo_url": "https://github.com/rgthree/rgthree-comfy.git"
+        },
+        {
+          "pack_id": "unknown",
+          "cnr_ids": [],
+          "aux_ids": [],
+          "versions": [],
+          "node_types": [
+            "Note"
+          ],
+          "repo_url": null
+        }
+      ],
+      "model_files": [
+        {
+          "filename": "0.GGUF",
+          "urls": []
+        },
+        {
+          "filename": "0.Safetensors",
+          "urls": []
+        },
+        {
+          "filename": "00.GGUF",
+          "urls": []
+        },
+        {
+          "filename": "00.Safetensors",
+          "urls": []
+        },
+        {
+          "filename": "23High noise-Cumshot Aesthetics.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "56Low noise-Cumshot Aesthetics.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "HIGH\\CloseUpFacialCum-v10_High.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "HIGH\\DR34ML4Y_HIGH_V2.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "HIGH\\Deepthroat-W22-I2V-HN.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "HIGH\\F4c3spl4sh-high-k3nk.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "HIGH\\HandjobBlowjobCombo-HIGH-v1.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "HIGH\\NSFW-22-H-e8.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "LOW\\CloseUpFacialCum-v10_Low.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "LOW\\DR34ML4Y_LOW_V2.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "LOW\\Deepthroat-W22-I2V-LN.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "LOW\\F4c3spl4sh-low-k3nk.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "LOW\\HandjobBlowjobCombo-LOW-v1.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "LOW\\NSFW-22-L-e8.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "LOW\\Oral-insertion-low-v1.0.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "NSFW-22-H-e8.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "NSFW-22-L-e8.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "RealESRGAN_x2plus.pth",
+          "urls": []
+        },
+        {
+          "filename": "SVI_v2_PRO_Wan2.2-I2V-A14B_HIGH_lora_rank_128_fp16.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "SVI_v2_PRO_Wan2.2-I2V-A14B_LOW_lora_rank_128_fp16.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "Wan2.2-I2V-A14B-HighNoise-Q8_0.gguf",
+          "urls": []
+        },
+        {
+          "filename": "Wan2.2-I2V-A14B-LowNoise-Q8_0.gguf",
+          "urls": []
+        },
+        {
+          "filename": "clip_vision_h.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "lightx2v_I2V_14B_480p_cfg_step_distill_rank64_bf16.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "rife49.pth",
+          "urls": []
+        },
+        {
+          "filename": "umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "wan2.2_i2v_A14b_high_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "wan2.2_i2v_A14b_high_noise_scaled_fp8_e4m3_lightx2v_4step_comfyui_720p_260412.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "wan2.2_i2v_A14b_low_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "wan2.2_i2v_A14b_low_noise_scaled_fp8_e4m3_lightx2v_4step_comfyui_720p_260412.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "wan_2.1_vae.safetensors",
+          "urls": []
+        }
+      ]
+    },
+    {
+      "workflow": "template_workflows/SVI pro FP8 260412.json",
+      "node_packs": [
+        {
+          "pack_id": "ComfyUI-Easy-Use",
+          "cnr_ids": [],
+          "aux_ids": [],
+          "versions": [],
+          "node_types": [
+            "GetNode",
+            "SetNode"
+          ],
+          "repo_url": "https://github.com/yolain/ComfyUI-Easy-Use.git"
+        },
+        {
+          "pack_id": "comfy-core",
+          "cnr_ids": [
+            "comfy-core"
+          ],
+          "aux_ids": [],
+          "versions": [
+            "0.3.50",
+            "0.3.59"
+          ],
+          "node_types": [
+            "CLIPLoader",
+            "CLIPTextEncode",
+            "KSamplerAdvanced",
+            "LoadImage",
+            "LoraLoaderModelOnly",
+            "ModelSamplingSD3",
+            "PrimitiveInt",
+            "UNETLoader",
+            "VAEDecode",
+            "VAELoader"
+          ],
+          "repo_url": null
+        },
+        {
+          "pack_id": "comfyui-easy-use",
+          "cnr_ids": [
+            "comfyui-easy-use"
+          ],
+          "aux_ids": [],
+          "versions": [
+            "1.3.3",
+            "3b224fbccde9bd35728348f9a4590dad6f603203"
+          ],
+          "node_types": [
+            "easy globalSeed",
+            "easy int"
+          ],
+          "repo_url": "https://github.com/yolain/ComfyUI-Easy-Use.git"
+        },
+        {
+          "pack_id": "comfyui-kjnodes",
+          "cnr_ids": [
+            "comfyui-kjnodes"
+          ],
+          "aux_ids": [],
+          "versions": [
+            "e11ca9793df5b9f32dda0677a7cfdc399bb91873"
+          ],
+          "node_types": [
+            "ImageBatchExtendWithOverlap"
+          ],
+          "repo_url": "https://github.com/kijai/ComfyUI-KJNodes.git"
+        },
+        {
+          "pack_id": "comfyui-videohelpersuite",
+          "cnr_ids": [
+            "comfyui-videohelpersuite"
+          ],
+          "aux_ids": [],
+          "versions": [
+            "3234937ff5f3ca19068aaba5042771514de2429d"
+          ],
+          "node_types": [
+            "VHS_VideoCombine"
+          ],
+          "repo_url": "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git"
+        },
+        {
+          "pack_id": "rgthree-comfy",
+          "cnr_ids": [],
+          "aux_ids": [],
+          "versions": [],
+          "node_types": [
+            "Fast Groups Bypasser (rgthree)"
+          ],
+          "repo_url": "https://github.com/rgthree/rgthree-comfy.git"
+        },
+        {
+          "pack_id": "unknown",
+          "cnr_ids": [],
+          "aux_ids": [],
+          "versions": [],
+          "node_types": [
+            "Note"
+          ],
+          "repo_url": null
+        },
+        {
+          "pack_id": "wan22fmlf",
+          "cnr_ids": [
+            "wan22fmlf"
+          ],
+          "aux_ids": [],
+          "versions": [
+            "9e8ef076985895916f07b069a713611d295b6014"
+          ],
+          "node_types": [
+            "WanAdvancedI2V"
+          ],
+          "repo_url": "https://github.com/wallen0322/ComfyUI-Wan22FMLF.git"
+        }
+      ],
+      "model_files": [
+        {
+          "filename": "//huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "//huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "//huggingface.co/Kijai/WanVideo_comfy/resolve/main/LoRAs/Stable-Video-Infinity/v2.0/SVI_v2_PRO_Wan2.2-I2V-A14B_HIGH_lora_rank_128_fp16.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "//huggingface.co/Kijai/WanVideo_comfy/resolve/main/LoRAs/Stable-Video-Infinity/v2.0/SVI_v2_PRO_Wan2.2-I2V-A14B_LOW_lora_rank_128_fp16.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "//huggingface.co/obsxrver/wan2.2-i2v-lightx2v-260412/blob/main/wan2.2_i2v_A14b_high_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "//huggingface.co/obsxrver/wan2.2-i2v-lightx2v-260412/blob/main/wan2.2_i2v_A14b_high_noise_scaled_fp8_e4m3_lightx2v_4step_comfyui_720p_260412.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "//huggingface.co/obsxrver/wan2.2-i2v-lightx2v-260412/blob/main/wan2.2_i2v_A14b_low_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "//huggingface.co/obsxrver/wan2.2-i2v-lightx2v-260412/blob/main/wan2.2_i2v_A14b_low_noise_scaled_fp8_e4m3_lightx2v_4step_comfyui_720p_260412.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "//huggingface.co/obsxrver/wan2.2-i2v-lightx2v-260412/resolve/main/wan2.2_i2v_A14b_high_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "//huggingface.co/obsxrver/wan2.2-i2v-lightx2v-260412/resolve/main/wan2.2_i2v_A14b_high_noise_scaled_fp8_e4m3_lightx2v_4step_comfyui_720p_260412.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "//huggingface.co/obsxrver/wan2.2-i2v-lightx2v-260412/resolve/main/wan2.2_i2v_A14b_low_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "//huggingface.co/obsxrver/wan2.2-i2v-lightx2v-260412/resolve/main/wan2.2_i2v_A14b_low_noise_scaled_fp8_e4m3_lightx2v_4step_comfyui_720p_260412.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "SVI_v2_PRO_Wan2.2-I2V-A14B_HIGH_lora_rank_128_fp16.safetensors",
+          "urls": [
+            "https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/LoRAs/Stable-Video-Infinity/v2.0/SVI_v2_PRO_Wan2.2-I2V-A14B_HIGH_lora_rank_128_fp16.safetensors"
+          ]
+        },
+        {
+          "filename": "SVI_v2_PRO_Wan2.2-I2V-A14B_LOW_lora_rank_128_fp16.safetensors",
+          "urls": [
+            "https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/LoRAs/Stable-Video-Infinity/v2.0/SVI_v2_PRO_Wan2.2-I2V-A14B_LOW_lora_rank_128_fp16.safetensors"
+          ]
+        },
+        {
+          "filename": "umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+          "urls": [
+            "https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors"
+          ]
+        },
+        {
+          "filename": "wan2.2_i2v_A14b_high_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+          "urls": [
+            "https://huggingface.co/obsxrver/wan2.2-i2v-lightx2v-260412/resolve/main/wan2.2_i2v_A14b_high_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors"
+          ]
+        },
+        {
+          "filename": "wan2.2_i2v_A14b_high_noise_scaled_fp8_e4m3_lightx2v_4step_comfyui_720p_260412.safetensors",
+          "urls": [
+            "https://huggingface.co/obsxrver/wan2.2-i2v-lightx2v-260412/resolve/main/wan2.2_i2v_A14b_high_noise_scaled_fp8_e4m3_lightx2v_4step_comfyui_720p_260412.safetensors"
+          ]
+        },
+        {
+          "filename": "wan2.2_i2v_A14b_low_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+          "urls": [
+            "https://huggingface.co/obsxrver/wan2.2-i2v-lightx2v-260412/resolve/main/wan2.2_i2v_A14b_low_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors"
+          ]
+        },
+        {
+          "filename": "wan2.2_i2v_A14b_low_noise_scaled_fp8_e4m3_lightx2v_4step_comfyui_720p_260412.safetensors",
+          "urls": [
+            "https://huggingface.co/obsxrver/wan2.2-i2v-lightx2v-260412/resolve/main/wan2.2_i2v_A14b_low_noise_scaled_fp8_e4m3_lightx2v_4step_comfyui_720p_260412.safetensors"
+          ]
+        },
+        {
+          "filename": "wan_2.1_vae.safetensors",
+          "urls": [
+            "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors"
+          ]
+        }
+      ]
+    },
+    {
+      "workflow": "template_workflows/DaSiWa WAN 2.2 i2v FastFidelity C-SVI-34.json",
+      "node_packs": [
+        {
+          "pack_id": "ComfyUI-Easy-Use",
+          "cnr_ids": [],
+          "aux_ids": [],
+          "versions": [],
+          "node_types": [
+            "easy getNode",
+            "easy setNode"
+          ],
+          "repo_url": "https://github.com/yolain/ComfyUI-Easy-Use.git"
+        },
+        {
+          "pack_id": "comfy-core",
+          "cnr_ids": [
+            "comfy-core"
+          ],
+          "aux_ids": [],
+          "versions": [
+            "0.3.67",
+            "0.5.1",
+            "0.7.0",
+            "0.8.2"
+          ],
+          "node_types": [
+            "0a3efdce-de6f-49fb-90ae-dbc00fff31b5",
+            "165a787d-9aff-412b-89f9-ac1036f6344d",
+            "27c2c81e-b965-47b4-8c1b-d3819f57554f",
+            "3042fe68-332b-40e9-9edd-2783a5a676a3",
+            "4f00fb7c-ce89-49e7-9eee-895c47ce1204",
+            "5f31ac54-6db6-47f6-baa9-3b981fe09103",
+            "6daf9af4-251a-4cb8-ad36-9c82337faaa5",
+            "8817619c-2ce4-406f-8ebb-8cd0cf0bd92b",
+            "LoadImage",
+            "aa12c523-4a24-408c-a31e-4badbec6fb7f",
+            "b099ccfb-fde9-4b12-b36f-f6a691e46c33",
+            "f89d4ee5-43bd-4b74-ac63-aea457a4baa1",
+            "f8c96da2-fcda-427e-b8ef-506a945c0a2a"
+          ],
+          "repo_url": null
+        },
+        {
+          "pack_id": "comfyui-videohelpersuite",
+          "cnr_ids": [
+            "comfyui-videohelpersuite"
+          ],
+          "aux_ids": [],
+          "versions": [
+            "1.7.9",
+            "3234937ff5f3ca19068aaba5042771514de2429d",
+            "8923bd836bdab8b7bbdf4ed104b7d045e70c66e2"
+          ],
+          "node_types": [
+            "VHS_PruneOutputs",
+            "VHS_VideoCombine"
+          ],
+          "repo_url": "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git"
+        },
+        {
+          "pack_id": "rgthree-comfy",
+          "cnr_ids": [
+            "rgthree-comfy"
+          ],
+          "aux_ids": [],
+          "versions": [
+            "1.0.2512112053"
+          ],
+          "node_types": [
+            "Bookmark (rgthree)",
+            "Fast Groups Bypasser (rgthree)",
+            "Label (rgthree)",
+            "Power Lora Loader (rgthree)"
+          ],
+          "repo_url": "https://github.com/rgthree/rgthree-comfy.git"
+        },
+        {
+          "pack_id": "unknown",
+          "cnr_ids": [],
+          "aux_ids": [],
+          "versions": [],
+          "node_types": [
+            "MarkdownNote"
+          ],
+          "repo_url": null
+        }
+      ],
+      "model_files": [
+        {
+          "filename": "//huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/blob/main/split_files/vae/wan_2.1_vae.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "//huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "//huggingface.co/Kijai/WanVideo_comfy/blob/main/LoRAs/Stable-Video-Infinity/v2.0/SVI_v2_PRO_Wan2.2-I2V-A14B_HIGH_lora_rank_128_fp16.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "//huggingface.co/Kijai/WanVideo_comfy/blob/main/LoRAs/Stable-Video-Infinity/v2.0/SVI_v2_PRO_Wan2.2-I2V-A14B_LOW_lora_rank_128_fp16.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "//huggingface.co/Kijai/WanVideo_comfy/resolve/main/LoRAs/Stable-Video-Infinity/v2.0/SVI_v2_PRO_Wan2.2-I2V-A14B_HIGH_lora_rank_128_fp16.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "2x-AnimeSharpV4_Fast_RCAN_PU.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "DaSiWa_Wan22_I2V_14B_BoundBite_High_v10_fp8.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "DaSiWa_Wan22_I2V_14B_BoundBite_Low_v10_fp8.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "SVI_v2_PRO_Wan2.2-I2V-A14B_HIGH_lora_rank_128_fp16.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "SVI_v2_PRO_Wan2.2-I2V-A14B_LOW_lora_rank_128_fp16.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "placeholder.gguf",
+          "urls": []
+        },
+        {
+          "filename": "rife49.pth",
+          "urls": []
+        },
+        {
+          "filename": "umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+          "urls": []
+        },
+        {
+          "filename": "wan_2.1_vae.safetensors",
+          "urls": []
+        }
+      ]
+    }
+  ],
+  "aggregate": {
+    "node_packs": [
+      {
+        "pack_id": "ComfyUI-Easy-Use",
+        "workflows": [
+          "template_workflows/DaSiWa WAN 2.2 i2v FastFidelity C-SVI-34.json",
+          "template_workflows/SVI pro FP8 260412.json",
+          "template_workflows/SVI pro.json"
+        ],
+        "node_types": [
+          "GetNode",
+          "SetNode",
+          "easy getNode",
+          "easy setNode"
+        ],
+        "repo_url": "https://github.com/yolain/ComfyUI-Easy-Use.git"
+      },
+      {
+        "pack_id": "GetNode",
+        "workflows": [
+          "template_workflows/Wan2.2_I2V_SVI_Kenpechi_Workflow_v3.5 12Sec (3).json",
+          "template_workflows/Wan2.2_I2V_SVI_Kenpechi_Workflow_v3.5 12Sec FP8 260412.json"
+        ],
+        "node_types": [
+          "GetNode"
+        ],
+        "repo_url": "https://github.com/yolain/ComfyUI-Easy-Use.git"
+      },
+      {
+        "pack_id": "SetNode",
+        "workflows": [
+          "template_workflows/Wan2.2_I2V_SVI_Kenpechi_Workflow_v3.5 12Sec (3).json",
+          "template_workflows/Wan2.2_I2V_SVI_Kenpechi_Workflow_v3.5 12Sec FP8 260412.json"
+        ],
+        "node_types": [
+          "SetNode"
+        ],
+        "repo_url": "https://github.com/yolain/ComfyUI-Easy-Use.git"
+      },
+      {
+        "pack_id": "comfy-core",
+        "workflows": [
+          "template_workflows/DaSiWa WAN 2.2 i2v FastFidelity C-SVI-34.json",
+          "template_workflows/SVI pro FP8 260412.json",
+          "template_workflows/SVI pro.json",
+          "template_workflows/Wan2.2_I2V_SVI_Kenpechi_Workflow_v3.5 12Sec (3).json",
+          "template_workflows/Wan2.2_I2V_SVI_Kenpechi_Workflow_v3.5 12Sec FP8 260412.json"
+        ],
+        "node_types": [
+          "099e21e6-4e70-4a4a-a2db-cf5220bf0be3",
+          "0a3efdce-de6f-49fb-90ae-dbc00fff31b5",
+          "165a787d-9aff-412b-89f9-ac1036f6344d",
+          "24a590b2-9fca-4008-bc62-b5fb3d62cc11",
+          "25ef21e7-7883-436e-9b24-03db2d6ca54e",
+          "27c2c81e-b965-47b4-8c1b-d3819f57554f",
+          "3042fe68-332b-40e9-9edd-2783a5a676a3",
+          "37348c84-40de-47ac-a101-071ed08b4da9",
+          "40d4748d-3539-4009-969f-2dfc1edc5e03",
+          "445a9c88-df7d-4bf4-89ca-795e4b96e34a",
+          "4ef918bd-d582-459b-9203-c53b406a39e1",
+          "4f00fb7c-ce89-49e7-9eee-895c47ce1204",
+          "5105922f-605f-44a0-9b6a-e1bf117a581c",
+          "54bfea02-e78a-4e01-889f-86e73a604925",
+          "576ed844-4015-4ec4-8c8d-855f4750c0ed",
+          "5f31ac54-6db6-47f6-baa9-3b981fe09103",
+          "640b0060-0f56-4d12-a8b3-34d913c73a37",
+          "6daf9af4-251a-4cb8-ad36-9c82337faaa5",
+          "76f6480c-c7ae-4122-8bd8-2a3ddea6e77a",
+          "7756973f-4070-4416-9ed7-84e06e5c0229",
+          "77a2adc8-bf0f-44cd-b711-7dae927532d5",
+          "7e18faff-9828-46df-aed4-a3914b0f5691",
+          "8267ddec-4ec9-4cc1-a44f-b70eee30c60e",
+          "8817619c-2ce4-406f-8ebb-8cd0cf0bd92b",
+          "885eb5a2-5242-49cc-b817-2369e3c4a047",
+          "8c68437a-5a59-421d-bf97-79c5358ad235",
+          "8fefc7ad-9146-4e2c-873e-7583a0a88433",
+          "9e65301f-0e9c-46a9-8b32-5ad4ffabad4c",
+          "CLIPLoader",
+          "CLIPTextEncode",
+          "CLIPVisionEncode",
+          "CLIPVisionLoader",
+          "ImageScaleBy",
+          "ImageUpscaleWithModel",
+          "KSamplerAdvanced",
+          "LoadImage",
+          "LoraLoaderModelOnly",
+          "ModelSamplingSD3",
+          "PrimitiveFloat",
+          "PrimitiveInt",
+          "UNETLoader",
+          "UpscaleModelLoader",
+          "VAEDecode",
+          "VAELoader",
+          "a1b8da11-cf2e-48c1-b1e4-dfd62f0eb372",
+          "aa12c523-4a24-408c-a31e-4badbec6fb7f",
+          "b099ccfb-fde9-4b12-b36f-f6a691e46c33",
+          "e486c044-f605-49f7-8feb-45f303a5a82f",
+          "efb4bcb7-4c1c-40c2-8ba3-5347061408d9",
+          "f4344010-23c2-43f5-bcfe-d3eb5ec92e25",
+          "f89d4ee5-43bd-4b74-ac63-aea457a4baa1",
+          "f8c96da2-fcda-427e-b8ef-506a945c0a2a"
+        ],
+        "repo_url": null
+      },
+      {
+        "pack_id": "comfyui-custom-scripts",
+        "workflows": [
+          "template_workflows/Wan2.2_I2V_SVI_Kenpechi_Workflow_v3.5 12Sec (3).json",
+          "template_workflows/Wan2.2_I2V_SVI_Kenpechi_Workflow_v3.5 12Sec FP8 260412.json"
+        ],
+        "node_types": [
+          "MathExpression|pysssss"
+        ],
+        "repo_url": "https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git"
+      },
+      {
+        "pack_id": "comfyui-easy-use",
+        "workflows": [
+          "template_workflows/SVI pro FP8 260412.json",
+          "template_workflows/SVI pro.json"
+        ],
+        "node_types": [
+          "easy globalSeed",
+          "easy int"
+        ],
+        "repo_url": "https://github.com/yolain/ComfyUI-Easy-Use.git"
+      },
+      {
+        "pack_id": "comfyui-gguf",
+        "workflows": [
+          "template_workflows/Wan2.2_I2V_SVI_Kenpechi_Workflow_v3.5 12Sec (3).json",
+          "template_workflows/Wan2.2_I2V_SVI_Kenpechi_Workflow_v3.5 12Sec FP8 260412.json"
+        ],
+        "node_types": [
+          "UnetLoaderGGUF"
+        ],
+        "repo_url": "https://github.com/city96/ComfyUI-GGUF.git"
+      },
+      {
+        "pack_id": "comfyui-kjnodes",
+        "workflows": [
+          "template_workflows/SVI pro FP8 260412.json",
+          "template_workflows/SVI pro.json",
+          "template_workflows/Wan2.2_I2V_SVI_Kenpechi_Workflow_v3.5 12Sec (3).json",
+          "template_workflows/Wan2.2_I2V_SVI_Kenpechi_Workflow_v3.5 12Sec FP8 260412.json"
+        ],
+        "node_types": [
+          "INTConstant",
+          "ImageBatchExtendWithOverlap",
+          "ImageResizeKJv2",
+          "ModelPatchTorchSettings",
+          "PathchSageAttentionKJ"
+        ],
+        "repo_url": "https://github.com/kijai/ComfyUI-KJNodes.git"
+      },
+      {
+        "pack_id": "comfyui-videohelpersuite",
+        "workflows": [
+          "template_workflows/DaSiWa WAN 2.2 i2v FastFidelity C-SVI-34.json",
+          "template_workflows/SVI pro FP8 260412.json",
+          "template_workflows/SVI pro.json"
+        ],
+        "node_types": [
+          "VHS_PruneOutputs",
+          "VHS_VideoCombine"
+        ],
+        "repo_url": "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git"
+      },
+      {
+        "pack_id": "rgthree-comfy",
+        "workflows": [
+          "template_workflows/DaSiWa WAN 2.2 i2v FastFidelity C-SVI-34.json",
+          "template_workflows/SVI pro FP8 260412.json",
+          "template_workflows/SVI pro.json",
+          "template_workflows/Wan2.2_I2V_SVI_Kenpechi_Workflow_v3.5 12Sec (3).json",
+          "template_workflows/Wan2.2_I2V_SVI_Kenpechi_Workflow_v3.5 12Sec FP8 260412.json"
+        ],
+        "node_types": [
+          "Bookmark (rgthree)",
+          "Context (rgthree)",
+          "Context Switch (rgthree)",
+          "Fast Groups Bypasser (rgthree)",
+          "Label (rgthree)",
+          "Power Lora Loader (rgthree)",
+          "Seed (rgthree)"
+        ],
+        "repo_url": "https://github.com/rgthree/rgthree-comfy.git"
+      },
+      {
+        "pack_id": "unknown",
+        "workflows": [
+          "template_workflows/DaSiWa WAN 2.2 i2v FastFidelity C-SVI-34.json",
+          "template_workflows/SVI pro FP8 260412.json",
+          "template_workflows/SVI pro.json",
+          "template_workflows/Wan2.2_I2V_SVI_Kenpechi_Workflow_v3.5 12Sec (3).json",
+          "template_workflows/Wan2.2_I2V_SVI_Kenpechi_Workflow_v3.5 12Sec FP8 260412.json"
+        ],
+        "node_types": [
+          "MarkdownNote",
+          "Note"
+        ],
+        "repo_url": null
+      },
+      {
+        "pack_id": "wan22fmlf",
+        "workflows": [
+          "template_workflows/SVI pro FP8 260412.json",
+          "template_workflows/SVI pro.json"
+        ],
+        "node_types": [
+          "WanAdvancedI2V"
+        ],
+        "repo_url": "https://github.com/wallen0322/ComfyUI-Wan22FMLF.git"
+      }
+    ]
+  }
+}

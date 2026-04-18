@@ -1,0 +1,122 @@
+# ============================================================
+# downloader_settings.txt - v5 sample
+# ============================================================
+# 同じディレクトリに置くと自動で読み込まれる（.env 不要）
+# KEY=VALUE 形式、# でコメント
+# ============================================================
+
+# ----- 基本: HF キャッシュ設定 -----
+HF_TOKEN=
+USE_HF_TRANSFER=1
+FORCE_REDOWNLOAD=False
+
+# ----- ComfyUI ベースディレクトリ -----
+COMFYUI_BASE=/workspace/ComfyUI
+
+# ----- カスタムノード自動インストール -----
+INSTALL_NODES=1
+NODES_PIP_INSTALL=1
+NODES_FORCE_REINSTALL=0
+NODES_USE_ZIP_FALLBACK=1
+
+# ----- パフォーマンス系 pip 依存（必要時のみ） -----
+# RunPod の ComfyUI テンプレートには大体入ってる。入ってない環境では1にする
+INSTALL_PERF_DEPS=0
+PERF_DEPS=sageattention,triton
+
+# ============================================================
+# モデル選択（v5 新機能）
+# ============================================================
+
+# ----- SVI 2.0 Pro LoRA（長尺生成・推奨ON） -----
+INCLUDE_SVI_PRO=1
+SVI_PRO_VARIANTS=HIGH,LOW
+
+# ----- Wan2.2 Remix NSFW（NSFW寄りbase、試したいなら1） -----
+INCLUDE_WAN22_REMIX=1
+WAN22_REMIX_VERSION=v2.0
+
+# ----- NSFW Wan UMT5-XXL テキストエンコーダ -----
+# Remix と組み合わせるなら1
+INCLUDE_NSFW_T5=1
+
+# ----- rCM (TurboDiffusion) アクセラレーター -----
+# 検証用。研究実装でファイル構造が変動する可能性あるので注意
+INCLUDE_RCM=1
+
+# ============================================================
+# 既存設定（v4.1 互換）
+# ============================================================
+
+# ----- Lightx2v -----
+INCLUDE_LIGHTX2V=True
+LIGHTX2V_SOURCE=kijai
+LIGHTX2V_VARIANT=I2V
+LIGHTX2V_RANKS=32,64,128
+
+# ----- Wan22-Lightning（250928 版） -----
+INCLUDE_WAN22_LIGHTNING=True
+WAN22_LIGHTNING_SOURCE=kijai
+
+# ----- Wan22 I2V Lightx2v -----
+INCLUDE_WAN22_I2V_LIGHTX2V=True
+
+# ----- Wan21 I2V Fallback -----
+INCLUDE_WAN21_I2V_LOW_LORA=1
+
+# ----- Lynx（顔ID保持） -----
+INCLUDE_LYNX=0
+LYNX_FLAVOR=lite
+LYNX_INCLUDE_REF=0
+
+# ============================================================
+# CivitAI（行為別 LoRA など）
+# ============================================================
+
+# CivitAI トークン（NSFW モデル DL に必須）
+# https://civitai.com/user/account → API Keys から取得
+CIVITAI_TOKEN=
+
+# 高速 DL（aria2c がインストールされてれば）
+USE_ARIA2C=1
+CIVITAI_FORCE_REDOWNLOAD=0
+CIVITAI_ONLY_SAFETENSORS=1
+
+# 取得する modelVersionId をカンマ区切りで列挙（URL でも可）
+# 例:
+#   CIVITAI_VERSIONS=
+#   CIVITAI_VERSIONS=https://civitai.com/models/1307155?modelVersionId=2073605
+#   CIVITAI_VERSIONS=2090458,2090481,2083303,2073605,2098405,2098396,2161023,2161067,2116027,2116008,2149593,2149614,2169837,2169847,2107285,2107379,2145089,2145156,2183383,2183388,2169632,2169679,1542133,1567538,2165895,2165919,2145434,2118352,2176892,2176919,2183000,2182983,2140307,1602715,2077123,2077119,2116008,2116027,1536597,2164213,2164348,2187729,2187757,2178018,2178013,2084892,2084887,2111773,2190121,2190113,2138455,2138472,2191217,2191270,2152516,2152583,2156392,2156435,2121297,2129122,2129201,2155928,2087124,2087173,2193373,2193369,2176200,2176194,2176505,2190476,2110439,2177091,2156421,2176320,2176313,2169837,2178869,2176450,2161335,2161329,2122806,2122834,2184299,2184286,2174518,2174586,2302508,2277119,2228977,2228982,2244767,2244856,2266644,2266652,2322133,2322108,2228466,2228467,2272102,2272024,2298928,2298673,2290065,2290038,2183388,2183383,2246669,2246694,2221988,2221382,2243217,2243201,2210306,2210320,2209275,2209481,2245356,2245426,2308339,2308328,2308249,2308253,2303232,2303184,2293622,2293529,2311489,2311491,2149614,2149593,2176194,2176200,2087173,2087124,2195862,2195866,2306421,2306425,2200389,2121297
+# あるいは URL:
+CIVITAI_VERSIONS=
+
+# queue file で渡す場合:
+# CIVITAI_QUEUE_PATH=/workspace/civitai_queue.txt
+# CIVITAI_DEFAULT_TARGET_DIR=loras
+# CIVITAI_DEFAULT_SUBDIR=nsfw
+
+# ============================================================
+# カスタムノード個別指定（通常はデフォルトでOK）
+# ============================================================
+# 各ノードの ref を pin したい場合は以下を編集
+# NODES_WANWRAPPER_REF=main
+# NODES_KJNODES_REF=main
+# NODES_VHS_REF=main
+# NODES_GGUF_REF=main
+# NODES_VFI_REF=main
+# NODES_MANAGER_REF=main
+# NODES_RGTHREE_REF=main
+
+# ----- WanSeamlessFlow（SVI Pro 移行で不要、入れるなら以下を有効化） -----
+# NODES_WANSEAMLESSFLOW_REPO=https://github.com/fblissjr/ComfyUI-WanSeamlessFlow.git
+
+# ----- MMAudio（音声生成、入れるなら以下を有効化） -----
+# NODES_MMAUDIO_REPO=https://github.com/kijai/ComfyUI-MMAudio.git
+
+# ============================================================
+# CivitAI ドメイン分割（2026-04 時点）の注意
+# ============================================================
+# civitai.com（PG-13 まで）と civitai.red（NSFW）の2ドメイン体制。
+# API endpoint は引き続き共通DBに繋がるが、検索系を使う場合は要再検証。
+# version_id 直指定（modelVersionId）は問題なく動くはず。
+# 詳細: https://civitai.com/articles/28369/two-front-doors-civitaicom-civitaired-and-whats-next

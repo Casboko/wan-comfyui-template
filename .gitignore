@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+
+template_settings.env
+civitai_queue.txt
+civitai_queue.json
+civitai_queue.jsonl
+
+reports/preset_audit.md
+reports/preset_audit.json
+
+tmp/downloader_settings.local.txt
