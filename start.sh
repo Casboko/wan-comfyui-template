@@ -108,6 +108,9 @@ seed_bundled_nodes() {
     local dst
     name="$(basename "$src")"
     dst="${dst_root}/${name}"
+    if [ -e "$dst" ] && [ ! -d "$dst/.git" ]; then
+      rm -rf "$dst"
+    fi
     if [ -e "$dst" ]; then
       continue
     fi
