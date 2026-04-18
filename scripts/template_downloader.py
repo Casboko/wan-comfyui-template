@@ -10,6 +10,7 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
@@ -113,10 +114,12 @@ CIVITAI_DL_TIMEOUT = int(os.environ.get("CIVITAI_DL_TIMEOUT", "900"))
 COMFY_BASE = Path(os.environ.get("COMFYUI_BASE", "/workspace/ComfyUI")).expanduser().resolve()
 HF_TOKEN = os.environ.get("HF_TOKEN", "").strip() or None
 CIVITAI_TOKEN = os.environ.get("CIVITAI_TOKEN", "").strip() or None
+TEMPLATE_PIP_CONSTRAINT = os.environ.get("TEMPLATE_PIP_CONSTRAINT", "").strip() or os.environ.get("PIP_CONSTRAINT", "").strip()
 MODEL_INCLUDE_GROUPS = set(_split_csv(os.environ.get("ENABLED_MODEL_GROUPS")))
 MODEL_EXCLUDE_GROUPS = set(_split_csv(os.environ.get("DISABLED_MODEL_GROUPS")))
 NODE_INCLUDE_GROUPS = set(_split_csv(os.environ.get("ENABLED_NODE_GROUPS")))
 NODE_EXCLUDE_GROUPS = set(_split_csv(os.environ.get("DISABLED_NODE_GROUPS")))
+LOCKED_RUNTIME_PACKAGES = {item.lower() for item in _split_csv(os.environ.get("LOCKED_RUNTIME_PACKAGES", "torch,torchvision,torchaudio,triton,xformers,nvidia-cublas,nvidia-cuda-runtime,nvidia-cudnn-cu13,nvidia-cudnn-cu12"))}
 CIVITAI_VERSIONS = _split_csv(os.environ.get("CIVITAI_VERSIONS"))
 CIVITAI_QUEUE_PATH = os.environ.get("CIVITAI_QUEUE_PATH", "").strip()
 CIVITAI_DEFAULT_TARGET_DIR = os.environ.get("CIVITAI_DEFAULT_TARGET_DIR", "loras").strip() or "loras"
@@ -165,9 +168,21 @@ CUSTOM_NODES_DIR = COMFY_BASE / "custom_nodes"
 for directory in [*MODEL_ROOTS.values(), CUSTOM_NODES_DIR]:
     directory.mkdir(parents=True, exist_ok=True)
 
+PIP_CONSTRAINT_PATH = Path(TEMPLATE_PIP_CONSTRAINT).expanduser().resolve() if TEMPLATE_PIP_CONSTRAINT else None
+
 
 def _which(cmd: str) -> bool:
     return shutil.which(cmd) is not None
+
+
+def _subprocess_env() -> dict[str, str]:
+    env = os.environ.copy()
+    if PIP_CONSTRAINT_PATH and PIP_CONSTRAINT_PATH.exists():
+        env["PIP_CONSTRAINT"] = str(PIP_CONSTRAINT_PATH)
+        env["TEMPLATE_PIP_CONSTRAINT"] = str(PIP_CONSTRAINT_PATH)
+    current = env.get("PYTHONPATH", "")
+    env["PYTHONPATH"] = str(COMFY_BASE) if not current else f"{COMFY_BASE}{os.pathsep}{current}"
+    return env
 
 
 def validate_safetensors_header(path: Path) -> bool:
@@ -299,21 +314,69 @@ def _download_zip(repo_url: str, ref: str, dst: Path) -> str:
         tmp.unlink(missing_ok=True)
 
 
+def _normalize_requirement_name(line: str) -> str | None:
+    stripped = line.strip()
+    if not stripped or stripped.startswith("#"):
+        return None
+    if stripped.startswith(("-", "--")):
+        return None
+    if stripped.startswith(("git+", "http://", "https://")):
+        return None
+    name = stripped.split("@", 1)[0].strip()
+    name = re.split(r"[<>=!~;\[\s]", name, 1)[0]
+    normalized = name.strip().lower()
+    return normalized or None
+
+
+def _prepare_requirements_file(req: Path, entry: dict[str, Any]) -> tuple[Path, Path | None]:
+    runtime_lock_policy = str(entry.get("runtime_lock_policy", "filter")).strip().lower() or "filter"
+    skipped: list[str] = []
+    rendered_lines: list[str] = []
+    for raw in req.read_text(encoding="utf-8").splitlines():
+        package = _normalize_requirement_name(raw)
+        if package and package in LOCKED_RUNTIME_PACKAGES:
+            if runtime_lock_policy == "allow":
+                rendered_lines.append(raw)
+                continue
+            if runtime_lock_policy == "error":
+                raise RuntimeError(f"{req.name} contains locked runtime package '{package}'")
+            skipped.append(package)
+            continue
+        rendered_lines.append(raw)
+    if not skipped:
+        return req, None
+    unique = ", ".join(sorted(set(skipped)))
+    print(f"[WARN] {req.parent.name}/{req.name}: filtered locked runtime packages: {unique}")
+    tmp = tempfile.NamedTemporaryFile("w", encoding="utf-8", suffix=".txt", delete=False)
+    try:
+        tmp.write("\n".join(rendered_lines) + "\n")
+        tmp.flush()
+    finally:
+        tmp.close()
+    return Path(tmp.name), Path(tmp.name)
+
+
 def _pip_install_requirements(node_dir: Path, entry: dict[str, Any]) -> None:
     requirements_file = str(entry.get("requirements_file", "requirements.txt") or "").strip()
     if requirements_file and NODES_PIP_INSTALL:
         req = node_dir / requirements_file
         if req.exists():
-            subprocess.check_call(
-                [sys.executable, "-m", "pip", "install", "--no-build-isolation", "-U", "-r", str(req)],
-                timeout=NODES_TIMEOUT,
-            )
+            prepared_req, cleanup_path = _prepare_requirements_file(req, entry)
+            try:
+                cmd = [sys.executable, "-m", "pip", "install", "--no-build-isolation", "-U"]
+                if PIP_CONSTRAINT_PATH and PIP_CONSTRAINT_PATH.exists():
+                    cmd.extend(["-c", str(PIP_CONSTRAINT_PATH)])
+                cmd.extend(["-r", str(prepared_req)])
+                subprocess.check_call(cmd, timeout=NODES_TIMEOUT, env=_subprocess_env())
+            finally:
+                if cleanup_path is not None:
+                    cleanup_path.unlink(missing_ok=True)
     install_policy = str(entry.get("install_py_policy", "run")).strip().lower()
     install_py = node_dir / "install.py"
     if not install_py.exists() or install_policy == "skip":
         return
     try:
-        subprocess.check_call([sys.executable, str(install_py)], timeout=NODES_TIMEOUT)
+        subprocess.check_call([sys.executable, str(install_py)], timeout=NODES_TIMEOUT, env=_subprocess_env())
     except Exception:
         if install_policy == "best_effort":
             print(f"[WARN] install.py failed for {node_dir.name}; continuing because install_py_policy=best_effort")

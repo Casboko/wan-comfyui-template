@@ -1,0 +1,359 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+TEMPLATE_CONFIG_ROOT="/opt/template-config"
+TEMPLATE_SCRIPT_ROOT="/opt/template-scripts"
+TEMPLATE_WORKFLOW_ROOT="/opt/template-workflows"
+TEMPLATE_NODE_CACHE_ROOT="/opt/template-node-cache"
+TEMPLATE_PIP_CONSTRAINT="${TEMPLATE_PIP_CONSTRAINT:-/opt/template-pip/constraints-cu128.txt}"
+TEMPLATE_SAGEATTENTION_ROOT="/opt/SageAttention"
+COMFYUI_IMAGE_ROOT="/ComfyUI"
+DEFAULT_NETWORK_VOLUME="${NETWORK_VOLUME:-/workspace}"
+RUNPOD_POD_ID="${RUNPOD_POD_ID:-local}"
+DEFAULT_SETTINGS="${TEMPLATE_PRESET_PATH:-$TEMPLATE_CONFIG_ROOT/settings/workflow_bundle.env}"
+SETTINGS_OVERRIDE="${DOWNLOADER_SETTINGS_PATH:-$DEFAULT_NETWORK_VOLUME/template_settings.env}"
+START_JUPYTER="${START_JUPYTER:-1}"
+INSTALL_SAGEATTENTION="${INSTALL_SAGEATTENTION:-0}"
+COMFYUI_URL="${COMFYUI_URL:-http://127.0.0.1:8188}"
+
+command_exists() {
+  command -v "$1" >/dev/null 2>&1
+}
+
+log() {
+  printf '[template] %s\n' "$*"
+}
+
+ensure_packages() {
+  local missing=()
+  command_exists aria2c || missing+=(aria2)
+  command_exists curl || missing+=(curl)
+  command_exists git || missing+=(git)
+  if [ ${#missing[@]} -gt 0 ]; then
+    log "Installing runtime packages: ${missing[*]}"
+    apt-get update
+    apt-get install -y "${missing[@]}"
+  fi
+}
+
+maybe_preload_tcmalloc() {
+  local tcmalloc
+  tcmalloc="$(ldconfig -p | grep -Po 'libtcmalloc\.so\.\d+' | head -n 1 || true)"
+  if [ -n "${tcmalloc:-}" ]; then
+    export LD_PRELOAD="$tcmalloc"
+  fi
+}
+
+resolve_network_volume() {
+  NETWORK_VOLUME="$DEFAULT_NETWORK_VOLUME"
+  if [ ! -d "$NETWORK_VOLUME" ]; then
+    log "NETWORK_VOLUME directory '$NETWORK_VOLUME' not found; falling back to /"
+    NETWORK_VOLUME="/"
+  fi
+  export NETWORK_VOLUME
+}
+
+resolve_settings() {
+  if [ -f "$SETTINGS_OVERRIDE" ]; then
+    export DOWNLOADER_SETTINGS_PATH="$SETTINGS_OVERRIDE"
+  else
+    export DOWNLOADER_SETTINGS_PATH="$DEFAULT_SETTINGS"
+  fi
+  log "Using settings file: $DOWNLOADER_SETTINGS_PATH"
+}
+
+load_settings_env() {
+  if [ ! -f "$DOWNLOADER_SETTINGS_PATH" ]; then
+    return
+  fi
+  set -a
+  # shellcheck disable=SC1090
+  . "$DOWNLOADER_SETTINGS_PATH"
+  set +a
+  log "Loaded template settings into shell environment"
+}
+
+resolve_runtime_paths() {
+  local requested_base="${COMFYUI_BASE:-$NETWORK_VOLUME/ComfyUI}"
+  if [ "$NETWORK_VOLUME" = "/" ] && [[ "$requested_base" == /workspace/* ]]; then
+    requested_base="/ComfyUI"
+  fi
+
+  COMFYUI_DIR="$requested_base"
+  WORKFLOW_DIR="${COMFYUI_DIR}/user/default/workflows/Custom"
+  JUPYTER_DIR="$NETWORK_VOLUME"
+  COMFY_LOG="${NETWORK_VOLUME}/comfyui_${RUNPOD_POD_ID}_nohup.log"
+  MODEL_LOG="${NETWORK_VOLUME}/template_model_download_${RUNPOD_POD_ID}.log"
+
+  export COMFYUI_BASE="$COMFYUI_DIR"
+}
+
+export_runtime_guards() {
+  export PYTHONPATH="${COMFYUI_DIR}${PYTHONPATH:+:${PYTHONPATH}}"
+  if [ -f "$TEMPLATE_PIP_CONSTRAINT" ]; then
+    export PIP_CONSTRAINT="$TEMPLATE_PIP_CONSTRAINT"
+    export TEMPLATE_PIP_CONSTRAINT
+    log "Using pip constraint file: $TEMPLATE_PIP_CONSTRAINT"
+  fi
+}
+
+run_additional_params() {
+  if [ -f "$NETWORK_VOLUME/additional_params.sh" ]; then
+    chmod +x "$NETWORK_VOLUME/additional_params.sh"
+    log "Running additional_params.sh"
+    "$NETWORK_VOLUME/additional_params.sh"
+  fi
+}
+
+ensure_workspace_layout() {
+  mkdir -p "$NETWORK_VOLUME"
+  ensure_comfyui_workspace
+  seed_bundled_nodes
+  seed_upscale_assets
+  mkdir -p "$WORKFLOW_DIR"
+}
+
+ensure_comfyui_workspace() {
+  if [ -f "$COMFYUI_DIR/main.py" ]; then
+    return
+  fi
+  if [ ! -f "$COMFYUI_IMAGE_ROOT/main.py" ]; then
+    log "Bundled ComfyUI image root is missing: ${COMFYUI_IMAGE_ROOT}"
+    return 1
+  fi
+  if [ "$COMFYUI_DIR" = "$COMFYUI_IMAGE_ROOT" ]; then
+    return
+  fi
+  log "ComfyUI workspace not found, copying bundled tree into ${COMFYUI_DIR}"
+  rm -rf "$COMFYUI_DIR"
+  mkdir -p "$(dirname "$COMFYUI_DIR")"
+  cp -a "$COMFYUI_IMAGE_ROOT" "$COMFYUI_DIR"
+}
+
+seed_bundled_nodes() {
+  local dst_root="${COMFYUI_DIR}/custom_nodes"
+  local manifest_path="${NODE_MANIFEST_PATH:-$TEMPLATE_CONFIG_ROOT/manifests/custom_nodes.json}"
+  local -a selected_nodes=()
+  mkdir -p "$dst_root"
+  if [ ! -d "$TEMPLATE_NODE_CACHE_ROOT" ]; then
+    return
+  fi
+
+  if [ -f "$manifest_path" ]; then
+    mapfile -t selected_nodes < <(
+      NODE_MANIFEST_PATH="$manifest_path" python3 - <<'PY'
+import json
+import os
+from pathlib import Path
+
+manifest_path = Path(os.environ["NODE_MANIFEST_PATH"])
+include = {item.strip() for item in os.environ.get("ENABLED_NODE_GROUPS", "").split(",") if item.strip()}
+exclude = {item.strip() for item in os.environ.get("DISABLED_NODE_GROUPS", "").split(",") if item.strip()}
+
+for entry in json.loads(manifest_path.read_text(encoding="utf-8")):
+    if entry.get("enabled", True) is False:
+        continue
+    groups = set(entry.get("groups") or [])
+    if include and not (groups & include):
+        continue
+    if exclude and (groups & exclude):
+        continue
+    name = str(entry.get("name") or "").strip()
+    if name:
+        print(name)
+PY
+    )
+  fi
+
+  if [ ${#selected_nodes[@]} -eq 0 ]; then
+    mapfile -t selected_nodes < <(find "$TEMPLATE_NODE_CACHE_ROOT" -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | sort)
+  fi
+
+  for name in "${selected_nodes[@]}"; do
+    local src="${TEMPLATE_NODE_CACHE_ROOT}/${name}"
+    local dst="${dst_root}/${name}"
+    if [ ! -d "$src" ]; then
+      continue
+    fi
+    if [ -e "$dst" ] && [ ! -d "$dst/.git" ]; then
+      rm -rf "$dst"
+    fi
+    if [ -e "$dst" ]; then
+      continue
+    fi
+    cp -a "$src" "$dst"
+    log "Seeded bundled node: ${name}"
+  done
+}
+
+seed_upscale_assets() {
+  local dst_root="${COMFYUI_DIR}/models/upscale_models"
+  mkdir -p "$dst_root"
+  if [ -f /4xLSDIR.pth ] && [ ! -f "${dst_root}/4xLSDIR.pth" ]; then
+    cp /4xLSDIR.pth "${dst_root}/4xLSDIR.pth"
+    log "Seeded bundled upscale model: 4xLSDIR.pth"
+  fi
+}
+
+copy_template_workflows() {
+  mkdir -p "$WORKFLOW_DIR"
+  find "$TEMPLATE_WORKFLOW_ROOT" -maxdepth 1 -type f -name '*.json' -print0 | while IFS= read -r -d '' src; do
+    local name
+    local dst
+    name="$(basename "$src")"
+    if [ -n "${TEMPLATE_WORKFLOW_INCLUDE:-}" ]; then
+      local include
+      local matched=0
+      IFS=',' read -r -a includes <<< "$TEMPLATE_WORKFLOW_INCLUDE"
+      for include in "${includes[@]}"; do
+        include="${include#"${include%%[![:space:]]*}"}"
+        include="${include%"${include##*[![:space:]]}"}"
+        if [ "$include" = "$name" ]; then
+          matched=1
+          break
+        fi
+      done
+      if [ "$matched" -ne 1 ]; then
+        continue
+      fi
+    fi
+    dst="${WORKFLOW_DIR}/${name}"
+    if [ ! -f "$dst" ]; then
+      cp "$src" "$dst"
+      log "Copied workflow: ${name}"
+    fi
+  done
+}
+
+start_jupyter_if_enabled() {
+  if [ "$START_JUPYTER" != "1" ]; then
+    return
+  fi
+  if command_exists jupyter-lab; then
+    nohup jupyter-lab --ip=0.0.0.0 --allow-root --no-browser --NotebookApp.token='' --NotebookApp.password='' --ServerApp.allow_origin='*' --ServerApp.allow_credentials=True --notebook-dir="$JUPYTER_DIR" >"$NETWORK_VOLUME/jupyter_${RUNPOD_POD_ID}.log" 2>&1 &
+    log "JupyterLab started"
+  fi
+}
+
+sageattention_preflight() {
+  python3 - <<'PY'
+import sys
+
+try:
+    import torch
+except Exception as exc:
+    print(f"SageAttention preflight failed to import torch: {exc}", file=sys.stderr)
+    raise SystemExit(1)
+
+try:
+    if not torch.cuda.is_available():
+        raise RuntimeError("torch.cuda.is_available() returned False")
+    device_count = torch.cuda.device_count()
+    if device_count < 1:
+        raise RuntimeError("torch.cuda.device_count() returned 0")
+    caps = []
+    for idx in range(device_count):
+        major, minor = torch.cuda.get_device_capability(idx)
+        caps.append(f"{major}.{minor}")
+    print(
+        "SageAttention preflight passed: "
+        f"torch={torch.__version__}, compute_capabilities={','.join(caps)}",
+        file=sys.stderr,
+    )
+except Exception as exc:
+    print(f"SageAttention preflight failed: {exc}", file=sys.stderr)
+    raise SystemExit(1)
+PY
+}
+
+install_sageattention_if_enabled() {
+  if [ "$INSTALL_SAGEATTENTION" != "1" ]; then
+    return
+  fi
+  log "Installing SageAttention"
+  if [ ! -d "$TEMPLATE_SAGEATTENTION_ROOT" ]; then
+    log "Bundled SageAttention source is missing: ${TEMPLATE_SAGEATTENTION_ROOT}"
+    return
+  fi
+  if ! sageattention_preflight; then
+    log "Skipping SageAttention install because the current CUDA runtime is not usable"
+    return
+  fi
+  rm -rf /tmp/SageAttention
+  cp -a "$TEMPLATE_SAGEATTENTION_ROOT" /tmp/SageAttention
+  if (
+    cd /tmp/SageAttention
+    export EXT_PARALLEL=4 NVCC_APPEND_FLAGS="--threads 8" MAX_JOBS=32
+    python3 -m pip install --no-build-isolation -e .
+  ); then
+    export COMFYUI_EXTRA_ARGS="${COMFYUI_EXTRA_ARGS:-} --use-sage-attention"
+  else
+    log "SageAttention install failed; continuing without --use-sage-attention"
+  fi
+}
+
+run_node_phase() {
+  log "Installing custom nodes"
+  python3 "$TEMPLATE_SCRIPT_ROOT/template_downloader.py" --phase nodes
+}
+
+start_model_phase() {
+  log "Starting background model download"
+  nohup python3 "$TEMPLATE_SCRIPT_ROOT/template_downloader.py" --phase models >"$MODEL_LOG" 2>&1 &
+  TEMPLATE_MODEL_PID=$!
+}
+
+start_comfyui() {
+  local -a args
+  args=(python3 "$COMFYUI_DIR/main.py" --listen 0.0.0.0 --port 8188 --enable-cors-header '*')
+  if [ -n "${COMFYUI_EXTRA_ARGS:-}" ]; then
+    # shellcheck disable=SC2206
+    local extra=( ${COMFYUI_EXTRA_ARGS} )
+    args+=("${extra[@]}")
+  fi
+  nohup "${args[@]}" >"$COMFY_LOG" 2>&1 &
+}
+
+wait_for_comfyui() {
+  local waited=0
+  local max_wait=120
+  until curl --silent --fail "$COMFYUI_URL" --output /dev/null; do
+    if [ "$waited" -ge "$max_wait" ]; then
+      log "ComfyUI did not become ready within ${max_wait}s"
+      log "Startup log: $COMFY_LOG"
+      if [ -f "$COMFY_LOG" ]; then
+        log "Last 80 lines from ComfyUI log:"
+        tail -n 80 "$COMFY_LOG" || true
+      fi
+      return 1
+    fi
+    log "Waiting for ComfyUI... ($waited/${max_wait}s)"
+    sleep 2
+    waited=$((waited + 2))
+  done
+  log "ComfyUI is ready"
+}
+
+main() {
+  maybe_preload_tcmalloc
+  ensure_packages
+  resolve_network_volume
+  resolve_settings
+  load_settings_env
+  resolve_runtime_paths
+  export_runtime_guards
+  run_additional_params
+  ensure_workspace_layout
+  copy_template_workflows
+  start_jupyter_if_enabled
+  start_model_phase
+  run_node_phase
+  install_sageattention_if_enabled
+  start_comfyui
+  wait_for_comfyui
+  log "ComfyUI log: $COMFY_LOG"
+  log "Model download log: $MODEL_LOG"
+  sleep infinity
+}
+
+main "$@"

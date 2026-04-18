@@ -1,6 +1,7 @@
-FROM runpod/pytorch:1.0.2-cu1281-torch280-ubuntu2404
+FROM nvidia/cuda:12.8.1-cudnn-devel-ubuntu24.04 AS base
 
-ARG COMFYUI_REF=3086026401180c9216bcb6ace442a4e3587d2c66
+ARG UPSTREAM_REPO=https://github.com/Hearmeman24/comfyui-wan.git
+ARG UPSTREAM_REF=8fadd7b70245a4437654d5af0017e4e9eca83fa9
 ARG SAGEATTENTION_REF=68de3797d163b89d28f9a38026c3b7313f6940d2
 
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -10,48 +11,45 @@ ENV DEBIAN_FRONTEND=noninteractive \
     CMAKE_BUILD_PARALLEL_LEVEL=8 \
     PATH="/opt/venv/bin:$PATH"
 
-RUN apt-get update && \
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    apt-get update && \
     apt-get install -y --no-install-recommends \
-      python3-venv python3-dev python3-pip \
-      curl ffmpeg ninja-build git git-lfs aria2 wget vim \
-      libgl1 libglib2.0-0 build-essential gcc g++ \
-      libgoogle-perftools4 ca-certificates && \
-    python3 -m venv --system-site-packages /opt/venv && \
+        python3.12 python3.12-venv python3.12-dev \
+        python3-pip \
+        curl ffmpeg ninja-build git aria2 git-lfs wget vim \
+        libgl1 libglib2.0-0 build-essential gcc g++ \
+        libgoogle-perftools4 ca-certificates && \
+    ln -sf /usr/bin/python3.12 /usr/bin/python && \
+    ln -sf /usr/bin/pip3 /usr/bin/pip && \
+    python3.12 -m venv /opt/venv && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --upgrade pip setuptools wheel packaging
-RUN pip install \
-      comfy-cli \
-      jupyterlab jupyterlab-lsp \
-      jupyter-server jupyter-server-terminals \
-      ipykernel jupyterlab_code_formatter \
-      requests huggingface_hub pyyaml gdown
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip install --pre torch torchvision torchaudio \
+        --index-url https://download.pytorch.org/whl/nightly/cu128
 
-RUN git init /opt/ComfyUI && \
-    cd /opt/ComfyUI && \
-    git remote add origin https://github.com/comfyanonymous/ComfyUI && \
-    git fetch --depth 1 origin "${COMFYUI_REF}" && \
-    git checkout --detach FETCH_HEAD
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip install packaging setuptools wheel
 
-RUN python3 - <<'PY' > /tmp/comfyui-core-requirements.txt
-from pathlib import Path
-req = Path("/opt/ComfyUI/requirements.txt").read_text().splitlines()
-for line in req:
-    s = line.strip()
-    if not s:
-        continue
-    if s.startswith("#"):
-        print(line)
-        continue
-    name = s.split("==")[0].split(">=")[0].split("~=")[0]
-    if name in {"torch", "torchvision", "torchaudio"}:
-        continue
-    print(line)
-PY
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip install \
+        comfy-cli \
+        jupyterlab jupyterlab-lsp \
+        jupyter-server jupyter-server-terminals \
+        ipykernel jupyterlab_code_formatter \
+        requests huggingface_hub pyyaml gdown triton
 
-RUN pip install -r /tmp/comfyui-core-requirements.txt && rm -f /tmp/comfyui-core-requirements.txt
+RUN --mount=type=cache,target=/root/.cache/pip \
+    /usr/bin/yes | comfy --workspace /ComfyUI install
+
+RUN git clone "${UPSTREAM_REPO}" /comfyui-wan && \
+    git -C /comfyui-wan fetch --depth 1 origin "${UPSTREAM_REF}" && \
+    git -C /comfyui-wan checkout --detach FETCH_HEAD
 
 COPY config/ /opt/template-config/
+COPY scripts/ /opt/template-scripts/
+COPY template_workflows/ /opt/template-workflows/
+COPY overrides/ /opt/overrides/
 
 RUN python3 - <<'PY'
 import json
@@ -79,10 +77,45 @@ RUN git init /opt/SageAttention && \
     git fetch --depth 1 origin "${SAGEATTENTION_REF}" && \
     git checkout --detach FETCH_HEAD
 
-COPY scripts/ /opt/template-scripts/
-COPY template_workflows/ /opt/template-workflows/
-COPY start.sh /start.sh
+RUN if [ -d /opt/overrides/comfyui-wan ]; then \
+      cp -a /opt/overrides/comfyui-wan/. /comfyui-wan/; \
+    fi && \
+    test -f /comfyui-wan/src/start.sh
 
-RUN chmod +x /start.sh /opt/template-scripts/template_downloader.py /opt/template-scripts/workflow_dependency_report.py
+FROM base AS final
 
-CMD ["/start.sh"]
+ENV PATH="/opt/venv/bin:$PATH" \
+    TEMPLATE_PIP_CONSTRAINT="/opt/template-pip/constraints-cu128.txt"
+
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip install opencv-python
+
+RUN python3 - <<'PY'
+from importlib.metadata import PackageNotFoundError, version
+from pathlib import Path
+
+packages = [
+    "torch",
+    "torchvision",
+    "torchaudio",
+    "triton",
+    "numpy",
+]
+
+lines = ["# Generated at image build time from the active CUDA 12.8 runtime stack."]
+for package in packages:
+    try:
+        lines.append(f"{package}=={version(package)}")
+    except PackageNotFoundError:
+        continue
+
+target = Path("/opt/template-pip/constraints-cu128.txt")
+target.parent.mkdir(parents=True, exist_ok=True)
+target.write_text("\n".join(lines) + "\n", encoding="utf-8")
+PY
+
+RUN cp /comfyui-wan/4xLSDIR.pth /4xLSDIR.pth && \
+    chmod +x /comfyui-wan/src/start.sh && \
+    chmod +x /opt/template-scripts/template_downloader.py /opt/template-scripts/workflow_dependency_report.py /opt/template-scripts/preset_audit.py
+
+CMD ["/bin/bash", "/comfyui-wan/src/start.sh"]
