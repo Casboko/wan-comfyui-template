@@ -159,6 +159,8 @@
     "ref": "26545cc2dd95bc3d27f056016300673bdeee78f5",
     "enabled": true,
     "groups": ["workflow_dasiwa"],
+    "requirements_file": "requirements-no-cupy.txt",
+    "install_py_policy": "skip",
     "pip_install": true
   },
   {

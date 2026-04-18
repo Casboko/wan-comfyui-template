@@ -299,16 +299,26 @@ def _download_zip(repo_url: str, ref: str, dst: Path) -> str:
         tmp.unlink(missing_ok=True)
 
 
-def _pip_install_requirements(node_dir: Path) -> None:
-    req = node_dir / "requirements.txt"
-    if req.exists() and NODES_PIP_INSTALL:
-        subprocess.check_call(
-            [sys.executable, "-m", "pip", "install", "--no-build-isolation", "-U", "-r", str(req)],
-            timeout=NODES_TIMEOUT,
-        )
+def _pip_install_requirements(node_dir: Path, entry: dict[str, Any]) -> None:
+    requirements_file = str(entry.get("requirements_file", "requirements.txt") or "").strip()
+    if requirements_file and NODES_PIP_INSTALL:
+        req = node_dir / requirements_file
+        if req.exists():
+            subprocess.check_call(
+                [sys.executable, "-m", "pip", "install", "--no-build-isolation", "-U", "-r", str(req)],
+                timeout=NODES_TIMEOUT,
+            )
+    install_policy = str(entry.get("install_py_policy", "run")).strip().lower()
     install_py = node_dir / "install.py"
-    if install_py.exists():
+    if not install_py.exists() or install_policy == "skip":
+        return
+    try:
         subprocess.check_call([sys.executable, str(install_py)], timeout=NODES_TIMEOUT)
+    except Exception:
+        if install_policy == "best_effort":
+            print(f"[WARN] install.py failed for {node_dir.name}; continuing because install_py_policy=best_effort")
+            return
+        raise
 
 
 def _dir_size(path: Path) -> int:
@@ -357,7 +367,7 @@ def install_nodes(entries: list[dict[str, Any]]) -> list[dict[str, Any]]:
             else:
                 raise RuntimeError("git not available and zip fallback disabled")
             if entry.get("pip_install", True):
-                _pip_install_requirements(dst)
+                _pip_install_requirements(dst, entry)
             size_bytes = _dir_size(dst)
             record.update(
                 status=status,

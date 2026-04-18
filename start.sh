@@ -210,6 +210,10 @@ wait_for_comfyui() {
     if [ "$waited" -ge "$max_wait" ]; then
       log "ComfyUI did not become ready within ${max_wait}s"
       log "Startup log: $COMFY_LOG"
+      if [ -f "$COMFY_LOG" ]; then
+        log "Last 80 lines from ComfyUI log:"
+        tail -n 80 "$COMFY_LOG" || true
+      fi
       return 1
     fi
     log "Waiting for ComfyUI... ($waited/${max_wait}s)"

@@ -20,6 +20,9 @@ RUN apt-get update && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN pip install --upgrade pip setuptools wheel packaging
+RUN pip install --force-reinstall \
+      --index-url https://download.pytorch.org/whl/cu128 \
+      torch==2.8.0 torchvision==0.23.0 torchaudio==2.8.0
 RUN pip install \
       comfy-cli \
       jupyterlab jupyterlab-lsp \
