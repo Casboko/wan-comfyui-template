@@ -1,0 +1,184 @@
+[
+  {
+    "id": "manager",
+    "name": "ComfyUI-Manager",
+    "repo": "https://github.com/ltdrdata/ComfyUI-Manager.git",
+    "ref": "22fc850853996285534eaff1f1e5eee5d3f2a6a3",
+    "enabled": true,
+    "groups": ["core", "workflow_ops"],
+    "pip_install": true
+  },
+  {
+    "id": "wanvideowrapper",
+    "name": "ComfyUI-WanVideoWrapper",
+    "repo": "https://github.com/kijai/ComfyUI-WanVideoWrapper.git",
+    "ref": "df8f3e49daaad117cf3090cc916c83f3d001494c",
+    "enabled": true,
+    "groups": ["workflow_wan22_i2v", "default_extra_nodes"],
+    "pip_install": true
+  },
+  {
+    "id": "kjnodes",
+    "name": "ComfyUI-KJNodes",
+    "repo": "https://github.com/kijai/ComfyUI-KJNodes.git",
+    "ref": "38cccdee6a484a702e4ac1a8b9a3cee0c4ed83f4",
+    "enabled": true,
+    "groups": ["core", "workflow_common", "workflow_svi", "workflow_dasiwa"],
+    "pip_install": true
+  },
+  {
+    "id": "videohelpersuite",
+    "name": "ComfyUI-VideoHelperSuite",
+    "repo": "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git",
+    "ref": "2984ec4c4b93292421888f38db74a5e8802a8ff8",
+    "enabled": true,
+    "groups": ["core", "workflow_common", "workflow_svi", "workflow_dasiwa"],
+    "pip_install": true
+  },
+  {
+    "id": "rgthree",
+    "name": "rgthree-comfy",
+    "repo": "https://github.com/rgthree/rgthree-comfy.git",
+    "ref": "683836c46e898668936c433502504cc0627482c5",
+    "enabled": true,
+    "groups": ["workflow_common", "workflow_dasiwa", "workflow_svi"],
+    "pip_install": true
+  },
+  {
+    "id": "easy_use",
+    "name": "ComfyUI-Easy-Use",
+    "repo": "https://github.com/yolain/ComfyUI-Easy-Use.git",
+    "ref": "ec4ca6717f539a8b8c48fa88645045846ca47669",
+    "enabled": true,
+    "groups": ["workflow_common", "workflow_wan22_i2v", "workflow_svi"],
+    "pip_install": true
+  },
+  {
+    "id": "cg_use_everywhere",
+    "name": "cg-use-everywhere",
+    "repo": "https://github.com/chrisgoringe/cg-use-everywhere.git",
+    "ref": "a3952a4480a07fc3df03ec8be315dfcd11bd5135",
+    "enabled": true,
+    "groups": ["workflow_wan22_i2v", "default_extra_nodes"],
+    "pip_install": true
+  },
+  {
+    "id": "chibi_nodes",
+    "name": "ComfyUI-Chibi-Nodes",
+    "repo": "https://github.com/chibiace/ComfyUI-Chibi-Nodes.git",
+    "ref": "9a9734f9c17bab3b4775c04291d26f48cbff2791",
+    "enabled": true,
+    "groups": ["workflow_wan22_i2v", "default_extra_nodes"],
+    "pip_install": true
+  },
+  {
+    "id": "essentials",
+    "name": "ComfyUI_essentials",
+    "repo": "https://github.com/cubiq/ComfyUI_essentials.git",
+    "ref": "9d9f4bedfc9f0321c19faf71855e228c93bd0dc9",
+    "enabled": true,
+    "groups": ["workflow_wan22_i2v", "default_extra_nodes"],
+    "pip_install": true
+  },
+  {
+    "id": "mx_toolkit",
+    "name": "ComfyUI-mxToolkit",
+    "repo": "https://github.com/Smirnov75/ComfyUI-mxToolkit.git",
+    "ref": "7f7a0e584f12078a1c589645d866ae96bad0cc35",
+    "enabled": true,
+    "groups": ["workflow_wan22_i2v", "default_extra_nodes"],
+    "pip_install": true
+  },
+  {
+    "id": "dream_video_batches",
+    "name": "comfyui-dream-video-batches",
+    "repo": "https://github.com/alt-key-project/comfyui-dream-video-batches.git",
+    "ref": "b418aad910fe55877e04fc9a590eef8904537ac7",
+    "enabled": true,
+    "groups": ["workflow_wan22_i2v", "default_extra_nodes"],
+    "pip_install": true
+  },
+  {
+    "id": "crt_nodes",
+    "name": "CRT-Nodes",
+    "repo": "https://github.com/PGCRT/CRT-Nodes.git",
+    "ref": "cd6b02fce98f7519744dd1453b6129d0c137b348",
+    "enabled": true,
+    "groups": ["workflow_wan22_i2v", "default_extra_nodes"],
+    "pip_install": true
+  },
+  {
+    "id": "image_filters",
+    "name": "ComfyUI-Image-Filters",
+    "repo": "https://github.com/spacepxl/ComfyUI-Image-Filters.git",
+    "ref": "bbb3fb0045461adf3602faeedaf40af57090d4e2",
+    "enabled": true,
+    "groups": ["workflow_wan22_i2v", "default_extra_nodes"],
+    "pip_install": true
+  },
+  {
+    "id": "custom_scripts",
+    "name": "ComfyUI-Custom-Scripts",
+    "repo": "https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git",
+    "ref": "609f3afaa74b2f88ef9ce8d939626065e3247469",
+    "enabled": true,
+    "groups": ["workflow_wan22_i2v", "workflow_svi"],
+    "pip_install": true
+  },
+  {
+    "id": "wan_seamless_flow",
+    "name": "ComfyUI-WanSeamlessFlow",
+    "repo": "https://github.com/fblissjr/ComfyUI-WanSeamlessFlow.git",
+    "ref": "c6d2b84fb744b73ce1d92d843863a95caf405653",
+    "enabled": true,
+    "groups": ["workflow_wan22_i2v", "default_extra_nodes"],
+    "pip_install": true
+  },
+  {
+    "id": "wan22fmlf",
+    "name": "ComfyUI-Wan22FMLF",
+    "repo": "https://github.com/wallen0322/ComfyUI-Wan22FMLF.git",
+    "ref": "7140cd224396aff9fd909ab0041c3fbf81b92b0c",
+    "enabled": true,
+    "groups": ["workflow_svi"],
+    "pip_install": true
+  },
+  {
+    "id": "gguf",
+    "name": "ComfyUI-GGUF",
+    "repo": "https://github.com/city96/ComfyUI-GGUF.git",
+    "ref": "6ea2651e7df66d7585f6ffee804b20e92fb38b8a",
+    "enabled": true,
+    "groups": ["workflow_svi", "workflow_dasiwa"],
+    "pip_install": true
+  },
+  {
+    "id": "frame_interpolation",
+    "name": "ComfyUI-Frame-Interpolation",
+    "repo": "https://github.com/Fannovel16/ComfyUI-Frame-Interpolation.git",
+    "ref": "26545cc2dd95bc3d27f056016300673bdeee78f5",
+    "enabled": true,
+    "groups": ["workflow_dasiwa"],
+    "requirements_file": "requirements-no-cupy.txt",
+    "install_py_policy": "skip",
+    "pip_install": true
+  },
+  {
+    "id": "white_rabbit",
+    "name": "comfyui-WhiteRabbit",
+    "repo": "https://github.com/Artificial-Sweetener/comfyui-WhiteRabbit.git",
+    "ref": "178156241b29b7cf0fb540a9688e1d9c375e8608",
+    "enabled": true,
+    "groups": ["workflow_dasiwa"],
+    "pip_install": true
+  },
+  {
+    "id": "dasiwa_nodes",
+    "name": "ComfyUI-DaSiWa-Nodes",
+    "repo": "https://github.com/darksidewalker/ComfyUI-DaSiWa-Nodes.git",
+    "ref": "c4bd19357c59af5ffb96866f3939a329c0b74f9e",
+    "enabled": true,
+    "groups": ["workflow_dasiwa"],
+    "pip_install": true
+  }
+]

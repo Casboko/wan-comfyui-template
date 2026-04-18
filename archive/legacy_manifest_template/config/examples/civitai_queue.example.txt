@@ -1,0 +1,8 @@
+# One item per line.
+# Plain modelVersionId or full CivitAI URL both work.
+
+2073605
+https://civitai.com/models/1307155?modelVersionId=2176505
+
+# JSON line also works when you want a custom destination or filename.
+{"url":"https://civitai.com/models/1307155?modelVersionId=2176505","target_dir":"loras/nsfw","target_name":"example_nsfw_lora.safetensors"}

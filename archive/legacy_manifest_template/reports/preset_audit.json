@@ -1,0 +1,1476 @@
+{
+  "presets": [
+    {
+      "settings_file": "config/settings/minimal.env",
+      "workflow_files": [
+        "Wan2.2_I2V_SVI_Kenpechi_Workflow_v3.5 12Sec (3).json",
+        "SVI pro.json"
+      ],
+      "node_groups": [
+        "core",
+        "workflow_common",
+        "workflow_svi"
+      ],
+      "model_groups": [
+        "common",
+        "lightx2v_compat",
+        "svi",
+        "wan22_i2v_base",
+        "wan22_text_fp8",
+        "wan22_vae",
+        "wan22_visual"
+      ],
+      "selected_nodes": [
+        {
+          "name": "ComfyUI-Manager",
+          "repo": "https://github.com/ltdrdata/ComfyUI-Manager.git",
+          "ref": "22fc850853996285534eaff1f1e5eee5d3f2a6a3"
+        },
+        {
+          "name": "ComfyUI-KJNodes",
+          "repo": "https://github.com/kijai/ComfyUI-KJNodes.git",
+          "ref": "38cccdee6a484a702e4ac1a8b9a3cee0c4ed83f4"
+        },
+        {
+          "name": "ComfyUI-VideoHelperSuite",
+          "repo": "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git",
+          "ref": "2984ec4c4b93292421888f38db74a5e8802a8ff8"
+        },
+        {
+          "name": "rgthree-comfy",
+          "repo": "https://github.com/rgthree/rgthree-comfy.git",
+          "ref": "683836c46e898668936c433502504cc0627482c5"
+        },
+        {
+          "name": "ComfyUI-Easy-Use",
+          "repo": "https://github.com/yolain/ComfyUI-Easy-Use.git",
+          "ref": "ec4ca6717f539a8b8c48fa88645045846ca47669"
+        },
+        {
+          "name": "ComfyUI-Custom-Scripts",
+          "repo": "https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git",
+          "ref": "609f3afaa74b2f88ef9ce8d939626065e3247469"
+        },
+        {
+          "name": "ComfyUI-Wan22FMLF",
+          "repo": "https://github.com/wallen0322/ComfyUI-Wan22FMLF.git",
+          "ref": "7140cd224396aff9fd909ab0041c3fbf81b92b0c"
+        },
+        {
+          "name": "ComfyUI-GGUF",
+          "repo": "https://github.com/city96/ComfyUI-GGUF.git",
+          "ref": "6ea2651e7df66d7585f6ffee804b20e92fb38b8a"
+        }
+      ],
+      "selected_models": [
+        {
+          "id": "wan22_i2v_official_high_noise_fp16",
+          "source": "huggingface",
+          "repo": "Comfy-Org/Wan_2.2_ComfyUI_Repackaged",
+          "target": "diffusion_models/wan2.2_i2v_high_noise_14B_fp16.safetensors",
+          "groups": [
+            "wan22_i2v_base",
+            "wan22_i2v_official_fp16"
+          ]
+        },
+        {
+          "id": "wan22_i2v_official_low_noise_fp16",
+          "source": "huggingface",
+          "repo": "Comfy-Org/Wan_2.2_ComfyUI_Repackaged",
+          "target": "diffusion_models/wan2.2_i2v_low_noise_14B_fp16.safetensors",
+          "groups": [
+            "wan22_i2v_base",
+            "wan22_i2v_official_fp16"
+          ]
+        },
+        {
+          "id": "wan_t5_fp8_scaled",
+          "source": "huggingface",
+          "repo": "Comfy-Org/Wan_2.1_ComfyUI_repackaged",
+          "target": "text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+          "groups": [
+            "common",
+            "wan22_text_fp8"
+          ]
+        },
+        {
+          "id": "wan_clip_text_visual",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "text_encoders/open-clip-xlm-roberta-large-vit-huge-14_visual_fp16.safetensors",
+          "groups": [
+            "wan22_visual"
+          ]
+        },
+        {
+          "id": "wan_clip_vision_h",
+          "source": "huggingface",
+          "repo": "Comfy-Org/Wan_2.1_ComfyUI_repackaged",
+          "target": "clip_vision/clip_vision_h.safetensors",
+          "groups": [
+            "wan22_visual"
+          ]
+        },
+        {
+          "id": "wan_vae_21",
+          "source": "huggingface",
+          "repo": "Comfy-Org/Wan_2.1_ComfyUI_repackaged",
+          "target": "vae/wan_2.1_vae.safetensors",
+          "groups": [
+            "common",
+            "wan22_vae"
+          ]
+        },
+        {
+          "id": "wan22_i2v_lightx2v_lora_high_rank64_260412",
+          "source": "huggingface",
+          "repo": "obsxrver/wan2.2-i2v-lightx2v-260412",
+          "target": "loras/wan2.2_i2v_A14b_high_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+          "groups": [
+            "lightx2v_compat",
+            "lightx2v_260412_lora"
+          ]
+        },
+        {
+          "id": "wan22_i2v_lightx2v_lora_low_rank64_260412",
+          "source": "huggingface",
+          "repo": "obsxrver/wan2.2-i2v-lightx2v-260412",
+          "target": "loras/wan2.2_i2v_A14b_low_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+          "groups": [
+            "lightx2v_compat",
+            "lightx2v_260412_lora"
+          ]
+        },
+        {
+          "id": "svi_pro_high",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "loras/SVI_v2_PRO_Wan2.2-I2V-A14B_HIGH_lora_rank_128_fp16.safetensors",
+          "groups": [
+            "svi"
+          ]
+        },
+        {
+          "id": "svi_pro_low",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "loras/SVI_v2_PRO_Wan2.2-I2V-A14B_LOW_lora_rank_128_fp16.safetensors",
+          "groups": [
+            "svi"
+          ]
+        }
+      ],
+      "model_by_dir": {
+        "clip_vision": 1,
+        "diffusion_models": 2,
+        "loras": 4,
+        "text_encoders": 2,
+        "vae": 1
+      },
+      "civitai_sources": [],
+      "warnings": [],
+      "counts": {
+        "workflows": 2,
+        "nodes": 8,
+        "models": 10,
+        "civitai_entries": 0
+      },
+      "model_targets": [
+        "diffusion_models/wan2.2_i2v_high_noise_14B_fp16.safetensors",
+        "diffusion_models/wan2.2_i2v_low_noise_14B_fp16.safetensors",
+        "text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+        "text_encoders/open-clip-xlm-roberta-large-vit-huge-14_visual_fp16.safetensors",
+        "clip_vision/clip_vision_h.safetensors",
+        "vae/wan_2.1_vae.safetensors",
+        "loras/wan2.2_i2v_A14b_high_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+        "loras/wan2.2_i2v_A14b_low_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+        "loras/SVI_v2_PRO_Wan2.2-I2V-A14B_HIGH_lora_rank_128_fp16.safetensors",
+        "loras/SVI_v2_PRO_Wan2.2-I2V-A14B_LOW_lora_rank_128_fp16.safetensors"
+      ]
+    },
+    {
+      "settings_file": "config/settings/research.env",
+      "workflow_files": [
+        "Wan2.2_I2V_SVI_Kenpechi_Workflow_v3.5 12Sec (3).json",
+        "SVI pro.json",
+        "DaSiWa WAN 2.2 i2v FastFidelity C-SVI-34.json"
+      ],
+      "node_groups": [
+        "core",
+        "default_extra_nodes",
+        "workflow_common",
+        "workflow_dasiwa",
+        "workflow_ops",
+        "workflow_svi"
+      ],
+      "model_groups": [
+        "candidate",
+        "common",
+        "lightx2v_candidate",
+        "lightx2v_compat",
+        "lightx2v_kijai_260412",
+        "lightx2v_legacy",
+        "svi",
+        "wan21_fallback",
+        "wan22_animate_candidate",
+        "wan22_i2v_base",
+        "wan22_i2v_fp8",
+        "wan22_text_bf16",
+        "wan22_text_fp8",
+        "wan22_vae",
+        "wan22_visual"
+      ],
+      "selected_nodes": [
+        {
+          "name": "ComfyUI-Manager",
+          "repo": "https://github.com/ltdrdata/ComfyUI-Manager.git",
+          "ref": "22fc850853996285534eaff1f1e5eee5d3f2a6a3"
+        },
+        {
+          "name": "ComfyUI-WanVideoWrapper",
+          "repo": "https://github.com/kijai/ComfyUI-WanVideoWrapper.git",
+          "ref": "df8f3e49daaad117cf3090cc916c83f3d001494c"
+        },
+        {
+          "name": "ComfyUI-KJNodes",
+          "repo": "https://github.com/kijai/ComfyUI-KJNodes.git",
+          "ref": "38cccdee6a484a702e4ac1a8b9a3cee0c4ed83f4"
+        },
+        {
+          "name": "ComfyUI-VideoHelperSuite",
+          "repo": "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git",
+          "ref": "2984ec4c4b93292421888f38db74a5e8802a8ff8"
+        },
+        {
+          "name": "rgthree-comfy",
+          "repo": "https://github.com/rgthree/rgthree-comfy.git",
+          "ref": "683836c46e898668936c433502504cc0627482c5"
+        },
+        {
+          "name": "ComfyUI-Easy-Use",
+          "repo": "https://github.com/yolain/ComfyUI-Easy-Use.git",
+          "ref": "ec4ca6717f539a8b8c48fa88645045846ca47669"
+        },
+        {
+          "name": "cg-use-everywhere",
+          "repo": "https://github.com/chrisgoringe/cg-use-everywhere.git",
+          "ref": "a3952a4480a07fc3df03ec8be315dfcd11bd5135"
+        },
+        {
+          "name": "ComfyUI-Chibi-Nodes",
+          "repo": "https://github.com/chibiace/ComfyUI-Chibi-Nodes.git",
+          "ref": "9a9734f9c17bab3b4775c04291d26f48cbff2791"
+        },
+        {
+          "name": "ComfyUI_essentials",
+          "repo": "https://github.com/cubiq/ComfyUI_essentials.git",
+          "ref": "9d9f4bedfc9f0321c19faf71855e228c93bd0dc9"
+        },
+        {
+          "name": "ComfyUI-mxToolkit",
+          "repo": "https://github.com/Smirnov75/ComfyUI-mxToolkit.git",
+          "ref": "7f7a0e584f12078a1c589645d866ae96bad0cc35"
+        },
+        {
+          "name": "comfyui-dream-video-batches",
+          "repo": "https://github.com/alt-key-project/comfyui-dream-video-batches.git",
+          "ref": "b418aad910fe55877e04fc9a590eef8904537ac7"
+        },
+        {
+          "name": "CRT-Nodes",
+          "repo": "https://github.com/PGCRT/CRT-Nodes.git",
+          "ref": "cd6b02fce98f7519744dd1453b6129d0c137b348"
+        },
+        {
+          "name": "ComfyUI-Image-Filters",
+          "repo": "https://github.com/spacepxl/ComfyUI-Image-Filters.git",
+          "ref": "bbb3fb0045461adf3602faeedaf40af57090d4e2"
+        },
+        {
+          "name": "ComfyUI-Custom-Scripts",
+          "repo": "https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git",
+          "ref": "609f3afaa74b2f88ef9ce8d939626065e3247469"
+        },
+        {
+          "name": "ComfyUI-WanSeamlessFlow",
+          "repo": "https://github.com/fblissjr/ComfyUI-WanSeamlessFlow.git",
+          "ref": "c6d2b84fb744b73ce1d92d843863a95caf405653"
+        },
+        {
+          "name": "ComfyUI-Wan22FMLF",
+          "repo": "https://github.com/wallen0322/ComfyUI-Wan22FMLF.git",
+          "ref": "7140cd224396aff9fd909ab0041c3fbf81b92b0c"
+        },
+        {
+          "name": "ComfyUI-GGUF",
+          "repo": "https://github.com/city96/ComfyUI-GGUF.git",
+          "ref": "6ea2651e7df66d7585f6ffee804b20e92fb38b8a"
+        },
+        {
+          "name": "ComfyUI-Frame-Interpolation",
+          "repo": "https://github.com/Fannovel16/ComfyUI-Frame-Interpolation.git",
+          "ref": "26545cc2dd95bc3d27f056016300673bdeee78f5"
+        },
+        {
+          "name": "comfyui-WhiteRabbit",
+          "repo": "https://github.com/Artificial-Sweetener/comfyui-WhiteRabbit.git",
+          "ref": "178156241b29b7cf0fb540a9688e1d9c375e8608"
+        },
+        {
+          "name": "ComfyUI-DaSiWa-Nodes",
+          "repo": "https://github.com/darksidewalker/ComfyUI-DaSiWa-Nodes.git",
+          "ref": "c4bd19357c59af5ffb96866f3939a329c0b74f9e"
+        }
+      ],
+      "selected_models": [
+        {
+          "id": "wan22_i2v_official_high_noise_fp16",
+          "source": "huggingface",
+          "repo": "Comfy-Org/Wan_2.2_ComfyUI_Repackaged",
+          "target": "diffusion_models/wan2.2_i2v_high_noise_14B_fp16.safetensors",
+          "groups": [
+            "wan22_i2v_base",
+            "wan22_i2v_official_fp16"
+          ]
+        },
+        {
+          "id": "wan22_i2v_official_low_noise_fp16",
+          "source": "huggingface",
+          "repo": "Comfy-Org/Wan_2.2_ComfyUI_Repackaged",
+          "target": "diffusion_models/wan2.2_i2v_low_noise_14B_fp16.safetensors",
+          "groups": [
+            "wan22_i2v_base",
+            "wan22_i2v_official_fp16"
+          ]
+        },
+        {
+          "id": "wan22_i2v_obsxrver_high_noise_fp8",
+          "source": "huggingface",
+          "repo": "obsxrver/wan2.2-i2v-lightx2v-260412",
+          "target": "diffusion_models/wan2.2_i2v_A14b_high_noise_scaled_fp8_e4m3_lightx2v_4step_comfyui_720p_260412.safetensors",
+          "groups": [
+            "wan22_i2v_fp8",
+            "wan22_i2v_obsxrver_fp8"
+          ]
+        },
+        {
+          "id": "wan22_i2v_obsxrver_low_noise_fp8",
+          "source": "huggingface",
+          "repo": "obsxrver/wan2.2-i2v-lightx2v-260412",
+          "target": "diffusion_models/wan2.2_i2v_A14b_low_noise_scaled_fp8_e4m3_lightx2v_4step_comfyui_720p_260412.safetensors",
+          "groups": [
+            "wan22_i2v_fp8",
+            "wan22_i2v_obsxrver_fp8"
+          ]
+        },
+        {
+          "id": "wan_t5_fp8_scaled",
+          "source": "huggingface",
+          "repo": "Comfy-Org/Wan_2.1_ComfyUI_repackaged",
+          "target": "text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+          "groups": [
+            "common",
+            "wan22_text_fp8"
+          ]
+        },
+        {
+          "id": "wan_t5_bf16",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "text_encoders/umt5-xxl-enc-bf16.safetensors",
+          "groups": [
+            "wan22_text_bf16"
+          ]
+        },
+        {
+          "id": "wan_clip_text_visual",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "text_encoders/open-clip-xlm-roberta-large-vit-huge-14_visual_fp16.safetensors",
+          "groups": [
+            "wan22_visual"
+          ]
+        },
+        {
+          "id": "wan_clip_vision_h",
+          "source": "huggingface",
+          "repo": "Comfy-Org/Wan_2.1_ComfyUI_repackaged",
+          "target": "clip_vision/clip_vision_h.safetensors",
+          "groups": [
+            "wan22_visual"
+          ]
+        },
+        {
+          "id": "wan_vae_21",
+          "source": "huggingface",
+          "repo": "Comfy-Org/Wan_2.1_ComfyUI_repackaged",
+          "target": "vae/wan_2.1_vae.safetensors",
+          "groups": [
+            "common",
+            "wan22_vae"
+          ]
+        },
+        {
+          "id": "wan22_i2v_lightx2v_lora_high_rank64_260412",
+          "source": "huggingface",
+          "repo": "obsxrver/wan2.2-i2v-lightx2v-260412",
+          "target": "loras/wan2.2_i2v_A14b_high_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+          "groups": [
+            "lightx2v_compat",
+            "lightx2v_260412_lora"
+          ]
+        },
+        {
+          "id": "wan22_i2v_lightx2v_lora_low_rank64_260412",
+          "source": "huggingface",
+          "repo": "obsxrver/wan2.2-i2v-lightx2v-260412",
+          "target": "loras/wan2.2_i2v_A14b_low_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+          "groups": [
+            "lightx2v_compat",
+            "lightx2v_260412_lora"
+          ]
+        },
+        {
+          "id": "lightx2v_i2v_rank64_kijai",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "loras/lightx2v_I2V_14B_480p_cfg_step_distill_rank64_bf16.safetensors",
+          "groups": [
+            "lightx2v_legacy"
+          ]
+        },
+        {
+          "id": "wan22_i2v_lightx2v_high_rank64_260412_kijai",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "loras/Wan_2_2_I2V_A14B_HIGH_lightx2v_4step_lora_260412_rank_64_fp16.safetensors",
+          "groups": [
+            "lightx2v_kijai_260412"
+          ]
+        },
+        {
+          "id": "wan22_i2v_lightx2v_low_rank64_260412_kijai",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "loras/Wan_2_2_I2V_A14B_LOW_lightx2v_4step_lora_260412_rank_64_fp16.safetensors",
+          "groups": [
+            "lightx2v_kijai_260412"
+          ]
+        },
+        {
+          "id": "wan22_i2v_lightx2v_high_rank256_260412_kijai",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "loras/Wan_2_2_I2V_A14B_HIGH_lightx2v_4step_lora_260412_rank_256_fp16.safetensors",
+          "groups": [
+            "lightx2v_kijai_260412"
+          ]
+        },
+        {
+          "id": "wan22_i2v_lightx2v_low_rank256_260412_kijai",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "loras/Wan_2_2_I2V_A14B_LOW_lightx2v_4step_lora_260412_rank_256_fp16.safetensors",
+          "groups": [
+            "lightx2v_kijai_260412"
+          ]
+        },
+        {
+          "id": "wan22_i2v_lightx2v_high_rank64_kijai",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "loras/Wan_2_2_I2V_A14B_HIGH_lightx2v_MoE_distill_lora_rank_64_bf16.safetensors",
+          "groups": [
+            "lightx2v_legacy"
+          ]
+        },
+        {
+          "id": "wan22_i2v_lightx2v_low_rank64_legacy",
+          "source": "huggingface",
+          "repo": "lightx2v/Wan2.2-I2V-A14B-Moe-Distill-Lightx2v",
+          "target": "loras/Wan2.2-I2V-A14B-Moe-Distill-Lightx2v_low_noise_model_rank64.safetensors",
+          "groups": [
+            "lightx2v_legacy"
+          ]
+        },
+        {
+          "id": "wan21_i2v_lightx2v_fallback",
+          "source": "huggingface",
+          "repo": "lightx2v/Wan2.1-I2V-14B-480P-StepDistill-CfgDistill-Lightx2v",
+          "target": "loras/Wan21_I2V_14B_lightx2v_cfg_step_distill_lora_rank64.safetensors",
+          "groups": [
+            "wan21_fallback",
+            "lightx2v_legacy"
+          ]
+        },
+        {
+          "id": "svi_pro_high",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "loras/SVI_v2_PRO_Wan2.2-I2V-A14B_HIGH_lora_rank_128_fp16.safetensors",
+          "groups": [
+            "svi"
+          ]
+        },
+        {
+          "id": "svi_pro_low",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "loras/SVI_v2_PRO_Wan2.2-I2V-A14B_LOW_lora_rank_128_fp16.safetensors",
+          "groups": [
+            "svi"
+          ]
+        }
+      ],
+      "model_by_dir": {
+        "clip_vision": 1,
+        "diffusion_models": 4,
+        "loras": 12,
+        "text_encoders": 3,
+        "vae": 1
+      },
+      "civitai_sources": [
+        "file:/home/kenic/repositories/wan_comfyui_template/config/civitai_queues/runpod_default_loras.json (70 entries)"
+      ],
+      "warnings": [
+        "includes research/legacy model groups: candidate, lightx2v_candidate, lightx2v_legacy, wan21_fallback, wan22_animate_candidate"
+      ],
+      "counts": {
+        "workflows": 3,
+        "nodes": 20,
+        "models": 21,
+        "civitai_entries": 70
+      },
+      "model_targets": [
+        "diffusion_models/wan2.2_i2v_high_noise_14B_fp16.safetensors",
+        "diffusion_models/wan2.2_i2v_low_noise_14B_fp16.safetensors",
+        "diffusion_models/wan2.2_i2v_A14b_high_noise_scaled_fp8_e4m3_lightx2v_4step_comfyui_720p_260412.safetensors",
+        "diffusion_models/wan2.2_i2v_A14b_low_noise_scaled_fp8_e4m3_lightx2v_4step_comfyui_720p_260412.safetensors",
+        "text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+        "text_encoders/umt5-xxl-enc-bf16.safetensors",
+        "text_encoders/open-clip-xlm-roberta-large-vit-huge-14_visual_fp16.safetensors",
+        "clip_vision/clip_vision_h.safetensors",
+        "vae/wan_2.1_vae.safetensors",
+        "loras/wan2.2_i2v_A14b_high_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+        "loras/wan2.2_i2v_A14b_low_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+        "loras/lightx2v_I2V_14B_480p_cfg_step_distill_rank64_bf16.safetensors",
+        "loras/Wan_2_2_I2V_A14B_HIGH_lightx2v_4step_lora_260412_rank_64_fp16.safetensors",
+        "loras/Wan_2_2_I2V_A14B_LOW_lightx2v_4step_lora_260412_rank_64_fp16.safetensors",
+        "loras/Wan_2_2_I2V_A14B_HIGH_lightx2v_4step_lora_260412_rank_256_fp16.safetensors",
+        "loras/Wan_2_2_I2V_A14B_LOW_lightx2v_4step_lora_260412_rank_256_fp16.safetensors",
+        "loras/Wan_2_2_I2V_A14B_HIGH_lightx2v_MoE_distill_lora_rank_64_bf16.safetensors",
+        "loras/Wan2.2-I2V-A14B-Moe-Distill-Lightx2v_low_noise_model_rank64.safetensors",
+        "loras/Wan21_I2V_14B_lightx2v_cfg_step_distill_lora_rank64.safetensors",
+        "loras/SVI_v2_PRO_Wan2.2-I2V-A14B_HIGH_lora_rank_128_fp16.safetensors",
+        "loras/SVI_v2_PRO_Wan2.2-I2V-A14B_LOW_lora_rank_128_fp16.safetensors"
+      ]
+    },
+    {
+      "settings_file": "config/settings/runpod_48gb.env",
+      "workflow_files": [
+        "Wan2.2_I2V_SVI_Kenpechi_Workflow_v3.5 12Sec FP8 260412.json",
+        "SVI pro FP8 260412.json",
+        "DaSiWa WAN 2.2 i2v FastFidelity C-SVI-34.json"
+      ],
+      "node_groups": [
+        "core",
+        "default_extra_nodes",
+        "workflow_common",
+        "workflow_dasiwa",
+        "workflow_ops",
+        "workflow_svi"
+      ],
+      "model_groups": [
+        "common",
+        "lightx2v_compat",
+        "lightx2v_kijai_260412",
+        "svi",
+        "wan22_i2v_fp8",
+        "wan22_text_fp8",
+        "wan22_vae",
+        "wan22_visual"
+      ],
+      "selected_nodes": [
+        {
+          "name": "ComfyUI-Manager",
+          "repo": "https://github.com/ltdrdata/ComfyUI-Manager.git",
+          "ref": "22fc850853996285534eaff1f1e5eee5d3f2a6a3"
+        },
+        {
+          "name": "ComfyUI-WanVideoWrapper",
+          "repo": "https://github.com/kijai/ComfyUI-WanVideoWrapper.git",
+          "ref": "df8f3e49daaad117cf3090cc916c83f3d001494c"
+        },
+        {
+          "name": "ComfyUI-KJNodes",
+          "repo": "https://github.com/kijai/ComfyUI-KJNodes.git",
+          "ref": "38cccdee6a484a702e4ac1a8b9a3cee0c4ed83f4"
+        },
+        {
+          "name": "ComfyUI-VideoHelperSuite",
+          "repo": "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git",
+          "ref": "2984ec4c4b93292421888f38db74a5e8802a8ff8"
+        },
+        {
+          "name": "rgthree-comfy",
+          "repo": "https://github.com/rgthree/rgthree-comfy.git",
+          "ref": "683836c46e898668936c433502504cc0627482c5"
+        },
+        {
+          "name": "ComfyUI-Easy-Use",
+          "repo": "https://github.com/yolain/ComfyUI-Easy-Use.git",
+          "ref": "ec4ca6717f539a8b8c48fa88645045846ca47669"
+        },
+        {
+          "name": "cg-use-everywhere",
+          "repo": "https://github.com/chrisgoringe/cg-use-everywhere.git",
+          "ref": "a3952a4480a07fc3df03ec8be315dfcd11bd5135"
+        },
+        {
+          "name": "ComfyUI-Chibi-Nodes",
+          "repo": "https://github.com/chibiace/ComfyUI-Chibi-Nodes.git",
+          "ref": "9a9734f9c17bab3b4775c04291d26f48cbff2791"
+        },
+        {
+          "name": "ComfyUI_essentials",
+          "repo": "https://github.com/cubiq/ComfyUI_essentials.git",
+          "ref": "9d9f4bedfc9f0321c19faf71855e228c93bd0dc9"
+        },
+        {
+          "name": "ComfyUI-mxToolkit",
+          "repo": "https://github.com/Smirnov75/ComfyUI-mxToolkit.git",
+          "ref": "7f7a0e584f12078a1c589645d866ae96bad0cc35"
+        },
+        {
+          "name": "comfyui-dream-video-batches",
+          "repo": "https://github.com/alt-key-project/comfyui-dream-video-batches.git",
+          "ref": "b418aad910fe55877e04fc9a590eef8904537ac7"
+        },
+        {
+          "name": "CRT-Nodes",
+          "repo": "https://github.com/PGCRT/CRT-Nodes.git",
+          "ref": "cd6b02fce98f7519744dd1453b6129d0c137b348"
+        },
+        {
+          "name": "ComfyUI-Image-Filters",
+          "repo": "https://github.com/spacepxl/ComfyUI-Image-Filters.git",
+          "ref": "bbb3fb0045461adf3602faeedaf40af57090d4e2"
+        },
+        {
+          "name": "ComfyUI-Custom-Scripts",
+          "repo": "https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git",
+          "ref": "609f3afaa74b2f88ef9ce8d939626065e3247469"
+        },
+        {
+          "name": "ComfyUI-WanSeamlessFlow",
+          "repo": "https://github.com/fblissjr/ComfyUI-WanSeamlessFlow.git",
+          "ref": "c6d2b84fb744b73ce1d92d843863a95caf405653"
+        },
+        {
+          "name": "ComfyUI-Wan22FMLF",
+          "repo": "https://github.com/wallen0322/ComfyUI-Wan22FMLF.git",
+          "ref": "7140cd224396aff9fd909ab0041c3fbf81b92b0c"
+        },
+        {
+          "name": "ComfyUI-GGUF",
+          "repo": "https://github.com/city96/ComfyUI-GGUF.git",
+          "ref": "6ea2651e7df66d7585f6ffee804b20e92fb38b8a"
+        },
+        {
+          "name": "ComfyUI-Frame-Interpolation",
+          "repo": "https://github.com/Fannovel16/ComfyUI-Frame-Interpolation.git",
+          "ref": "26545cc2dd95bc3d27f056016300673bdeee78f5"
+        },
+        {
+          "name": "comfyui-WhiteRabbit",
+          "repo": "https://github.com/Artificial-Sweetener/comfyui-WhiteRabbit.git",
+          "ref": "178156241b29b7cf0fb540a9688e1d9c375e8608"
+        },
+        {
+          "name": "ComfyUI-DaSiWa-Nodes",
+          "repo": "https://github.com/darksidewalker/ComfyUI-DaSiWa-Nodes.git",
+          "ref": "c4bd19357c59af5ffb96866f3939a329c0b74f9e"
+        }
+      ],
+      "selected_models": [
+        {
+          "id": "wan22_i2v_obsxrver_high_noise_fp8",
+          "source": "huggingface",
+          "repo": "obsxrver/wan2.2-i2v-lightx2v-260412",
+          "target": "diffusion_models/wan2.2_i2v_A14b_high_noise_scaled_fp8_e4m3_lightx2v_4step_comfyui_720p_260412.safetensors",
+          "groups": [
+            "wan22_i2v_fp8",
+            "wan22_i2v_obsxrver_fp8"
+          ]
+        },
+        {
+          "id": "wan22_i2v_obsxrver_low_noise_fp8",
+          "source": "huggingface",
+          "repo": "obsxrver/wan2.2-i2v-lightx2v-260412",
+          "target": "diffusion_models/wan2.2_i2v_A14b_low_noise_scaled_fp8_e4m3_lightx2v_4step_comfyui_720p_260412.safetensors",
+          "groups": [
+            "wan22_i2v_fp8",
+            "wan22_i2v_obsxrver_fp8"
+          ]
+        },
+        {
+          "id": "wan_t5_fp8_scaled",
+          "source": "huggingface",
+          "repo": "Comfy-Org/Wan_2.1_ComfyUI_repackaged",
+          "target": "text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+          "groups": [
+            "common",
+            "wan22_text_fp8"
+          ]
+        },
+        {
+          "id": "wan_clip_text_visual",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "text_encoders/open-clip-xlm-roberta-large-vit-huge-14_visual_fp16.safetensors",
+          "groups": [
+            "wan22_visual"
+          ]
+        },
+        {
+          "id": "wan_clip_vision_h",
+          "source": "huggingface",
+          "repo": "Comfy-Org/Wan_2.1_ComfyUI_repackaged",
+          "target": "clip_vision/clip_vision_h.safetensors",
+          "groups": [
+            "wan22_visual"
+          ]
+        },
+        {
+          "id": "wan_vae_21",
+          "source": "huggingface",
+          "repo": "Comfy-Org/Wan_2.1_ComfyUI_repackaged",
+          "target": "vae/wan_2.1_vae.safetensors",
+          "groups": [
+            "common",
+            "wan22_vae"
+          ]
+        },
+        {
+          "id": "wan22_i2v_lightx2v_lora_high_rank64_260412",
+          "source": "huggingface",
+          "repo": "obsxrver/wan2.2-i2v-lightx2v-260412",
+          "target": "loras/wan2.2_i2v_A14b_high_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+          "groups": [
+            "lightx2v_compat",
+            "lightx2v_260412_lora"
+          ]
+        },
+        {
+          "id": "wan22_i2v_lightx2v_lora_low_rank64_260412",
+          "source": "huggingface",
+          "repo": "obsxrver/wan2.2-i2v-lightx2v-260412",
+          "target": "loras/wan2.2_i2v_A14b_low_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+          "groups": [
+            "lightx2v_compat",
+            "lightx2v_260412_lora"
+          ]
+        },
+        {
+          "id": "wan22_i2v_lightx2v_high_rank64_260412_kijai",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "loras/Wan_2_2_I2V_A14B_HIGH_lightx2v_4step_lora_260412_rank_64_fp16.safetensors",
+          "groups": [
+            "lightx2v_kijai_260412"
+          ]
+        },
+        {
+          "id": "wan22_i2v_lightx2v_low_rank64_260412_kijai",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "loras/Wan_2_2_I2V_A14B_LOW_lightx2v_4step_lora_260412_rank_64_fp16.safetensors",
+          "groups": [
+            "lightx2v_kijai_260412"
+          ]
+        },
+        {
+          "id": "wan22_i2v_lightx2v_high_rank256_260412_kijai",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "loras/Wan_2_2_I2V_A14B_HIGH_lightx2v_4step_lora_260412_rank_256_fp16.safetensors",
+          "groups": [
+            "lightx2v_kijai_260412"
+          ]
+        },
+        {
+          "id": "wan22_i2v_lightx2v_low_rank256_260412_kijai",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "loras/Wan_2_2_I2V_A14B_LOW_lightx2v_4step_lora_260412_rank_256_fp16.safetensors",
+          "groups": [
+            "lightx2v_kijai_260412"
+          ]
+        },
+        {
+          "id": "svi_pro_high",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "loras/SVI_v2_PRO_Wan2.2-I2V-A14B_HIGH_lora_rank_128_fp16.safetensors",
+          "groups": [
+            "svi"
+          ]
+        },
+        {
+          "id": "svi_pro_low",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "loras/SVI_v2_PRO_Wan2.2-I2V-A14B_LOW_lora_rank_128_fp16.safetensors",
+          "groups": [
+            "svi"
+          ]
+        }
+      ],
+      "model_by_dir": {
+        "clip_vision": 1,
+        "diffusion_models": 2,
+        "loras": 8,
+        "text_encoders": 2,
+        "vae": 1
+      },
+      "civitai_sources": [
+        "file:/home/kenic/repositories/wan_comfyui_template/config/civitai_queues/runpod_default_loras.json (70 entries)"
+      ],
+      "warnings": [],
+      "counts": {
+        "workflows": 3,
+        "nodes": 20,
+        "models": 14,
+        "civitai_entries": 70
+      },
+      "model_targets": [
+        "diffusion_models/wan2.2_i2v_A14b_high_noise_scaled_fp8_e4m3_lightx2v_4step_comfyui_720p_260412.safetensors",
+        "diffusion_models/wan2.2_i2v_A14b_low_noise_scaled_fp8_e4m3_lightx2v_4step_comfyui_720p_260412.safetensors",
+        "text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+        "text_encoders/open-clip-xlm-roberta-large-vit-huge-14_visual_fp16.safetensors",
+        "clip_vision/clip_vision_h.safetensors",
+        "vae/wan_2.1_vae.safetensors",
+        "loras/wan2.2_i2v_A14b_high_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+        "loras/wan2.2_i2v_A14b_low_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+        "loras/Wan_2_2_I2V_A14B_HIGH_lightx2v_4step_lora_260412_rank_64_fp16.safetensors",
+        "loras/Wan_2_2_I2V_A14B_LOW_lightx2v_4step_lora_260412_rank_64_fp16.safetensors",
+        "loras/Wan_2_2_I2V_A14B_HIGH_lightx2v_4step_lora_260412_rank_256_fp16.safetensors",
+        "loras/Wan_2_2_I2V_A14B_LOW_lightx2v_4step_lora_260412_rank_256_fp16.safetensors",
+        "loras/SVI_v2_PRO_Wan2.2-I2V-A14B_HIGH_lora_rank_128_fp16.safetensors",
+        "loras/SVI_v2_PRO_Wan2.2-I2V-A14B_LOW_lora_rank_128_fp16.safetensors"
+      ]
+    },
+    {
+      "settings_file": "config/settings/runpod_80gb.env",
+      "workflow_files": [
+        "Wan2.2_I2V_SVI_Kenpechi_Workflow_v3.5 12Sec (3).json",
+        "SVI pro.json",
+        "DaSiWa WAN 2.2 i2v FastFidelity C-SVI-34.json"
+      ],
+      "node_groups": [
+        "core",
+        "default_extra_nodes",
+        "workflow_common",
+        "workflow_dasiwa",
+        "workflow_ops",
+        "workflow_svi"
+      ],
+      "model_groups": [
+        "common",
+        "lightx2v_compat",
+        "lightx2v_kijai_260412",
+        "svi",
+        "wan22_i2v_base",
+        "wan22_text_bf16",
+        "wan22_text_fp8",
+        "wan22_vae",
+        "wan22_visual"
+      ],
+      "selected_nodes": [
+        {
+          "name": "ComfyUI-Manager",
+          "repo": "https://github.com/ltdrdata/ComfyUI-Manager.git",
+          "ref": "22fc850853996285534eaff1f1e5eee5d3f2a6a3"
+        },
+        {
+          "name": "ComfyUI-WanVideoWrapper",
+          "repo": "https://github.com/kijai/ComfyUI-WanVideoWrapper.git",
+          "ref": "df8f3e49daaad117cf3090cc916c83f3d001494c"
+        },
+        {
+          "name": "ComfyUI-KJNodes",
+          "repo": "https://github.com/kijai/ComfyUI-KJNodes.git",
+          "ref": "38cccdee6a484a702e4ac1a8b9a3cee0c4ed83f4"
+        },
+        {
+          "name": "ComfyUI-VideoHelperSuite",
+          "repo": "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git",
+          "ref": "2984ec4c4b93292421888f38db74a5e8802a8ff8"
+        },
+        {
+          "name": "rgthree-comfy",
+          "repo": "https://github.com/rgthree/rgthree-comfy.git",
+          "ref": "683836c46e898668936c433502504cc0627482c5"
+        },
+        {
+          "name": "ComfyUI-Easy-Use",
+          "repo": "https://github.com/yolain/ComfyUI-Easy-Use.git",
+          "ref": "ec4ca6717f539a8b8c48fa88645045846ca47669"
+        },
+        {
+          "name": "cg-use-everywhere",
+          "repo": "https://github.com/chrisgoringe/cg-use-everywhere.git",
+          "ref": "a3952a4480a07fc3df03ec8be315dfcd11bd5135"
+        },
+        {
+          "name": "ComfyUI-Chibi-Nodes",
+          "repo": "https://github.com/chibiace/ComfyUI-Chibi-Nodes.git",
+          "ref": "9a9734f9c17bab3b4775c04291d26f48cbff2791"
+        },
+        {
+          "name": "ComfyUI_essentials",
+          "repo": "https://github.com/cubiq/ComfyUI_essentials.git",
+          "ref": "9d9f4bedfc9f0321c19faf71855e228c93bd0dc9"
+        },
+        {
+          "name": "ComfyUI-mxToolkit",
+          "repo": "https://github.com/Smirnov75/ComfyUI-mxToolkit.git",
+          "ref": "7f7a0e584f12078a1c589645d866ae96bad0cc35"
+        },
+        {
+          "name": "comfyui-dream-video-batches",
+          "repo": "https://github.com/alt-key-project/comfyui-dream-video-batches.git",
+          "ref": "b418aad910fe55877e04fc9a590eef8904537ac7"
+        },
+        {
+          "name": "CRT-Nodes",
+          "repo": "https://github.com/PGCRT/CRT-Nodes.git",
+          "ref": "cd6b02fce98f7519744dd1453b6129d0c137b348"
+        },
+        {
+          "name": "ComfyUI-Image-Filters",
+          "repo": "https://github.com/spacepxl/ComfyUI-Image-Filters.git",
+          "ref": "bbb3fb0045461adf3602faeedaf40af57090d4e2"
+        },
+        {
+          "name": "ComfyUI-Custom-Scripts",
+          "repo": "https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git",
+          "ref": "609f3afaa74b2f88ef9ce8d939626065e3247469"
+        },
+        {
+          "name": "ComfyUI-WanSeamlessFlow",
+          "repo": "https://github.com/fblissjr/ComfyUI-WanSeamlessFlow.git",
+          "ref": "c6d2b84fb744b73ce1d92d843863a95caf405653"
+        },
+        {
+          "name": "ComfyUI-Wan22FMLF",
+          "repo": "https://github.com/wallen0322/ComfyUI-Wan22FMLF.git",
+          "ref": "7140cd224396aff9fd909ab0041c3fbf81b92b0c"
+        },
+        {
+          "name": "ComfyUI-GGUF",
+          "repo": "https://github.com/city96/ComfyUI-GGUF.git",
+          "ref": "6ea2651e7df66d7585f6ffee804b20e92fb38b8a"
+        },
+        {
+          "name": "ComfyUI-Frame-Interpolation",
+          "repo": "https://github.com/Fannovel16/ComfyUI-Frame-Interpolation.git",
+          "ref": "26545cc2dd95bc3d27f056016300673bdeee78f5"
+        },
+        {
+          "name": "comfyui-WhiteRabbit",
+          "repo": "https://github.com/Artificial-Sweetener/comfyui-WhiteRabbit.git",
+          "ref": "178156241b29b7cf0fb540a9688e1d9c375e8608"
+        },
+        {
+          "name": "ComfyUI-DaSiWa-Nodes",
+          "repo": "https://github.com/darksidewalker/ComfyUI-DaSiWa-Nodes.git",
+          "ref": "c4bd19357c59af5ffb96866f3939a329c0b74f9e"
+        }
+      ],
+      "selected_models": [
+        {
+          "id": "wan22_i2v_official_high_noise_fp16",
+          "source": "huggingface",
+          "repo": "Comfy-Org/Wan_2.2_ComfyUI_Repackaged",
+          "target": "diffusion_models/wan2.2_i2v_high_noise_14B_fp16.safetensors",
+          "groups": [
+            "wan22_i2v_base",
+            "wan22_i2v_official_fp16"
+          ]
+        },
+        {
+          "id": "wan22_i2v_official_low_noise_fp16",
+          "source": "huggingface",
+          "repo": "Comfy-Org/Wan_2.2_ComfyUI_Repackaged",
+          "target": "diffusion_models/wan2.2_i2v_low_noise_14B_fp16.safetensors",
+          "groups": [
+            "wan22_i2v_base",
+            "wan22_i2v_official_fp16"
+          ]
+        },
+        {
+          "id": "wan_t5_fp8_scaled",
+          "source": "huggingface",
+          "repo": "Comfy-Org/Wan_2.1_ComfyUI_repackaged",
+          "target": "text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+          "groups": [
+            "common",
+            "wan22_text_fp8"
+          ]
+        },
+        {
+          "id": "wan_t5_bf16",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "text_encoders/umt5-xxl-enc-bf16.safetensors",
+          "groups": [
+            "wan22_text_bf16"
+          ]
+        },
+        {
+          "id": "wan_clip_text_visual",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "text_encoders/open-clip-xlm-roberta-large-vit-huge-14_visual_fp16.safetensors",
+          "groups": [
+            "wan22_visual"
+          ]
+        },
+        {
+          "id": "wan_clip_vision_h",
+          "source": "huggingface",
+          "repo": "Comfy-Org/Wan_2.1_ComfyUI_repackaged",
+          "target": "clip_vision/clip_vision_h.safetensors",
+          "groups": [
+            "wan22_visual"
+          ]
+        },
+        {
+          "id": "wan_vae_21",
+          "source": "huggingface",
+          "repo": "Comfy-Org/Wan_2.1_ComfyUI_repackaged",
+          "target": "vae/wan_2.1_vae.safetensors",
+          "groups": [
+            "common",
+            "wan22_vae"
+          ]
+        },
+        {
+          "id": "wan22_i2v_lightx2v_lora_high_rank64_260412",
+          "source": "huggingface",
+          "repo": "obsxrver/wan2.2-i2v-lightx2v-260412",
+          "target": "loras/wan2.2_i2v_A14b_high_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+          "groups": [
+            "lightx2v_compat",
+            "lightx2v_260412_lora"
+          ]
+        },
+        {
+          "id": "wan22_i2v_lightx2v_lora_low_rank64_260412",
+          "source": "huggingface",
+          "repo": "obsxrver/wan2.2-i2v-lightx2v-260412",
+          "target": "loras/wan2.2_i2v_A14b_low_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+          "groups": [
+            "lightx2v_compat",
+            "lightx2v_260412_lora"
+          ]
+        },
+        {
+          "id": "wan22_i2v_lightx2v_high_rank64_260412_kijai",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "loras/Wan_2_2_I2V_A14B_HIGH_lightx2v_4step_lora_260412_rank_64_fp16.safetensors",
+          "groups": [
+            "lightx2v_kijai_260412"
+          ]
+        },
+        {
+          "id": "wan22_i2v_lightx2v_low_rank64_260412_kijai",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "loras/Wan_2_2_I2V_A14B_LOW_lightx2v_4step_lora_260412_rank_64_fp16.safetensors",
+          "groups": [
+            "lightx2v_kijai_260412"
+          ]
+        },
+        {
+          "id": "wan22_i2v_lightx2v_high_rank256_260412_kijai",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "loras/Wan_2_2_I2V_A14B_HIGH_lightx2v_4step_lora_260412_rank_256_fp16.safetensors",
+          "groups": [
+            "lightx2v_kijai_260412"
+          ]
+        },
+        {
+          "id": "wan22_i2v_lightx2v_low_rank256_260412_kijai",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "loras/Wan_2_2_I2V_A14B_LOW_lightx2v_4step_lora_260412_rank_256_fp16.safetensors",
+          "groups": [
+            "lightx2v_kijai_260412"
+          ]
+        },
+        {
+          "id": "svi_pro_high",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "loras/SVI_v2_PRO_Wan2.2-I2V-A14B_HIGH_lora_rank_128_fp16.safetensors",
+          "groups": [
+            "svi"
+          ]
+        },
+        {
+          "id": "svi_pro_low",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "loras/SVI_v2_PRO_Wan2.2-I2V-A14B_LOW_lora_rank_128_fp16.safetensors",
+          "groups": [
+            "svi"
+          ]
+        }
+      ],
+      "model_by_dir": {
+        "clip_vision": 1,
+        "diffusion_models": 2,
+        "loras": 8,
+        "text_encoders": 3,
+        "vae": 1
+      },
+      "civitai_sources": [
+        "file:/home/kenic/repositories/wan_comfyui_template/config/civitai_queues/runpod_default_loras.json (70 entries)"
+      ],
+      "warnings": [],
+      "counts": {
+        "workflows": 3,
+        "nodes": 20,
+        "models": 15,
+        "civitai_entries": 70
+      },
+      "model_targets": [
+        "diffusion_models/wan2.2_i2v_high_noise_14B_fp16.safetensors",
+        "diffusion_models/wan2.2_i2v_low_noise_14B_fp16.safetensors",
+        "text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+        "text_encoders/umt5-xxl-enc-bf16.safetensors",
+        "text_encoders/open-clip-xlm-roberta-large-vit-huge-14_visual_fp16.safetensors",
+        "clip_vision/clip_vision_h.safetensors",
+        "vae/wan_2.1_vae.safetensors",
+        "loras/wan2.2_i2v_A14b_high_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+        "loras/wan2.2_i2v_A14b_low_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+        "loras/Wan_2_2_I2V_A14B_HIGH_lightx2v_4step_lora_260412_rank_64_fp16.safetensors",
+        "loras/Wan_2_2_I2V_A14B_LOW_lightx2v_4step_lora_260412_rank_64_fp16.safetensors",
+        "loras/Wan_2_2_I2V_A14B_HIGH_lightx2v_4step_lora_260412_rank_256_fp16.safetensors",
+        "loras/Wan_2_2_I2V_A14B_LOW_lightx2v_4step_lora_260412_rank_256_fp16.safetensors",
+        "loras/SVI_v2_PRO_Wan2.2-I2V-A14B_HIGH_lora_rank_128_fp16.safetensors",
+        "loras/SVI_v2_PRO_Wan2.2-I2V-A14B_LOW_lora_rank_128_fp16.safetensors"
+      ]
+    },
+    {
+      "settings_file": "config/settings/workflow_bundle.env",
+      "workflow_files": [
+        "Wan2.2_I2V_SVI_Kenpechi_Workflow_v3.5 12Sec (3).json",
+        "SVI pro.json",
+        "DaSiWa WAN 2.2 i2v FastFidelity C-SVI-34.json"
+      ],
+      "node_groups": [
+        "core",
+        "default_extra_nodes",
+        "workflow_common",
+        "workflow_dasiwa",
+        "workflow_ops",
+        "workflow_svi"
+      ],
+      "model_groups": [
+        "common",
+        "lightx2v_compat",
+        "lightx2v_kijai_260412",
+        "svi",
+        "wan22_i2v_base",
+        "wan22_text_bf16",
+        "wan22_text_fp8",
+        "wan22_vae",
+        "wan22_visual"
+      ],
+      "selected_nodes": [
+        {
+          "name": "ComfyUI-Manager",
+          "repo": "https://github.com/ltdrdata/ComfyUI-Manager.git",
+          "ref": "22fc850853996285534eaff1f1e5eee5d3f2a6a3"
+        },
+        {
+          "name": "ComfyUI-WanVideoWrapper",
+          "repo": "https://github.com/kijai/ComfyUI-WanVideoWrapper.git",
+          "ref": "df8f3e49daaad117cf3090cc916c83f3d001494c"
+        },
+        {
+          "name": "ComfyUI-KJNodes",
+          "repo": "https://github.com/kijai/ComfyUI-KJNodes.git",
+          "ref": "38cccdee6a484a702e4ac1a8b9a3cee0c4ed83f4"
+        },
+        {
+          "name": "ComfyUI-VideoHelperSuite",
+          "repo": "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git",
+          "ref": "2984ec4c4b93292421888f38db74a5e8802a8ff8"
+        },
+        {
+          "name": "rgthree-comfy",
+          "repo": "https://github.com/rgthree/rgthree-comfy.git",
+          "ref": "683836c46e898668936c433502504cc0627482c5"
+        },
+        {
+          "name": "ComfyUI-Easy-Use",
+          "repo": "https://github.com/yolain/ComfyUI-Easy-Use.git",
+          "ref": "ec4ca6717f539a8b8c48fa88645045846ca47669"
+        },
+        {
+          "name": "cg-use-everywhere",
+          "repo": "https://github.com/chrisgoringe/cg-use-everywhere.git",
+          "ref": "a3952a4480a07fc3df03ec8be315dfcd11bd5135"
+        },
+        {
+          "name": "ComfyUI-Chibi-Nodes",
+          "repo": "https://github.com/chibiace/ComfyUI-Chibi-Nodes.git",
+          "ref": "9a9734f9c17bab3b4775c04291d26f48cbff2791"
+        },
+        {
+          "name": "ComfyUI_essentials",
+          "repo": "https://github.com/cubiq/ComfyUI_essentials.git",
+          "ref": "9d9f4bedfc9f0321c19faf71855e228c93bd0dc9"
+        },
+        {
+          "name": "ComfyUI-mxToolkit",
+          "repo": "https://github.com/Smirnov75/ComfyUI-mxToolkit.git",
+          "ref": "7f7a0e584f12078a1c589645d866ae96bad0cc35"
+        },
+        {
+          "name": "comfyui-dream-video-batches",
+          "repo": "https://github.com/alt-key-project/comfyui-dream-video-batches.git",
+          "ref": "b418aad910fe55877e04fc9a590eef8904537ac7"
+        },
+        {
+          "name": "CRT-Nodes",
+          "repo": "https://github.com/PGCRT/CRT-Nodes.git",
+          "ref": "cd6b02fce98f7519744dd1453b6129d0c137b348"
+        },
+        {
+          "name": "ComfyUI-Image-Filters",
+          "repo": "https://github.com/spacepxl/ComfyUI-Image-Filters.git",
+          "ref": "bbb3fb0045461adf3602faeedaf40af57090d4e2"
+        },
+        {
+          "name": "ComfyUI-Custom-Scripts",
+          "repo": "https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git",
+          "ref": "609f3afaa74b2f88ef9ce8d939626065e3247469"
+        },
+        {
+          "name": "ComfyUI-WanSeamlessFlow",
+          "repo": "https://github.com/fblissjr/ComfyUI-WanSeamlessFlow.git",
+          "ref": "c6d2b84fb744b73ce1d92d843863a95caf405653"
+        },
+        {
+          "name": "ComfyUI-Wan22FMLF",
+          "repo": "https://github.com/wallen0322/ComfyUI-Wan22FMLF.git",
+          "ref": "7140cd224396aff9fd909ab0041c3fbf81b92b0c"
+        },
+        {
+          "name": "ComfyUI-GGUF",
+          "repo": "https://github.com/city96/ComfyUI-GGUF.git",
+          "ref": "6ea2651e7df66d7585f6ffee804b20e92fb38b8a"
+        },
+        {
+          "name": "ComfyUI-Frame-Interpolation",
+          "repo": "https://github.com/Fannovel16/ComfyUI-Frame-Interpolation.git",
+          "ref": "26545cc2dd95bc3d27f056016300673bdeee78f5"
+        },
+        {
+          "name": "comfyui-WhiteRabbit",
+          "repo": "https://github.com/Artificial-Sweetener/comfyui-WhiteRabbit.git",
+          "ref": "178156241b29b7cf0fb540a9688e1d9c375e8608"
+        },
+        {
+          "name": "ComfyUI-DaSiWa-Nodes",
+          "repo": "https://github.com/darksidewalker/ComfyUI-DaSiWa-Nodes.git",
+          "ref": "c4bd19357c59af5ffb96866f3939a329c0b74f9e"
+        }
+      ],
+      "selected_models": [
+        {
+          "id": "wan22_i2v_official_high_noise_fp16",
+          "source": "huggingface",
+          "repo": "Comfy-Org/Wan_2.2_ComfyUI_Repackaged",
+          "target": "diffusion_models/wan2.2_i2v_high_noise_14B_fp16.safetensors",
+          "groups": [
+            "wan22_i2v_base",
+            "wan22_i2v_official_fp16"
+          ]
+        },
+        {
+          "id": "wan22_i2v_official_low_noise_fp16",
+          "source": "huggingface",
+          "repo": "Comfy-Org/Wan_2.2_ComfyUI_Repackaged",
+          "target": "diffusion_models/wan2.2_i2v_low_noise_14B_fp16.safetensors",
+          "groups": [
+            "wan22_i2v_base",
+            "wan22_i2v_official_fp16"
+          ]
+        },
+        {
+          "id": "wan_t5_fp8_scaled",
+          "source": "huggingface",
+          "repo": "Comfy-Org/Wan_2.1_ComfyUI_repackaged",
+          "target": "text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+          "groups": [
+            "common",
+            "wan22_text_fp8"
+          ]
+        },
+        {
+          "id": "wan_t5_bf16",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "text_encoders/umt5-xxl-enc-bf16.safetensors",
+          "groups": [
+            "wan22_text_bf16"
+          ]
+        },
+        {
+          "id": "wan_clip_text_visual",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "text_encoders/open-clip-xlm-roberta-large-vit-huge-14_visual_fp16.safetensors",
+          "groups": [
+            "wan22_visual"
+          ]
+        },
+        {
+          "id": "wan_clip_vision_h",
+          "source": "huggingface",
+          "repo": "Comfy-Org/Wan_2.1_ComfyUI_repackaged",
+          "target": "clip_vision/clip_vision_h.safetensors",
+          "groups": [
+            "wan22_visual"
+          ]
+        },
+        {
+          "id": "wan_vae_21",
+          "source": "huggingface",
+          "repo": "Comfy-Org/Wan_2.1_ComfyUI_repackaged",
+          "target": "vae/wan_2.1_vae.safetensors",
+          "groups": [
+            "common",
+            "wan22_vae"
+          ]
+        },
+        {
+          "id": "wan22_i2v_lightx2v_lora_high_rank64_260412",
+          "source": "huggingface",
+          "repo": "obsxrver/wan2.2-i2v-lightx2v-260412",
+          "target": "loras/wan2.2_i2v_A14b_high_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+          "groups": [
+            "lightx2v_compat",
+            "lightx2v_260412_lora"
+          ]
+        },
+        {
+          "id": "wan22_i2v_lightx2v_lora_low_rank64_260412",
+          "source": "huggingface",
+          "repo": "obsxrver/wan2.2-i2v-lightx2v-260412",
+          "target": "loras/wan2.2_i2v_A14b_low_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+          "groups": [
+            "lightx2v_compat",
+            "lightx2v_260412_lora"
+          ]
+        },
+        {
+          "id": "wan22_i2v_lightx2v_high_rank64_260412_kijai",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "loras/Wan_2_2_I2V_A14B_HIGH_lightx2v_4step_lora_260412_rank_64_fp16.safetensors",
+          "groups": [
+            "lightx2v_kijai_260412"
+          ]
+        },
+        {
+          "id": "wan22_i2v_lightx2v_low_rank64_260412_kijai",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "loras/Wan_2_2_I2V_A14B_LOW_lightx2v_4step_lora_260412_rank_64_fp16.safetensors",
+          "groups": [
+            "lightx2v_kijai_260412"
+          ]
+        },
+        {
+          "id": "wan22_i2v_lightx2v_high_rank256_260412_kijai",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "loras/Wan_2_2_I2V_A14B_HIGH_lightx2v_4step_lora_260412_rank_256_fp16.safetensors",
+          "groups": [
+            "lightx2v_kijai_260412"
+          ]
+        },
+        {
+          "id": "wan22_i2v_lightx2v_low_rank256_260412_kijai",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "loras/Wan_2_2_I2V_A14B_LOW_lightx2v_4step_lora_260412_rank_256_fp16.safetensors",
+          "groups": [
+            "lightx2v_kijai_260412"
+          ]
+        },
+        {
+          "id": "svi_pro_high",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "loras/SVI_v2_PRO_Wan2.2-I2V-A14B_HIGH_lora_rank_128_fp16.safetensors",
+          "groups": [
+            "svi"
+          ]
+        },
+        {
+          "id": "svi_pro_low",
+          "source": "huggingface",
+          "repo": "Kijai/WanVideo_comfy",
+          "target": "loras/SVI_v2_PRO_Wan2.2-I2V-A14B_LOW_lora_rank_128_fp16.safetensors",
+          "groups": [
+            "svi"
+          ]
+        }
+      ],
+      "model_by_dir": {
+        "clip_vision": 1,
+        "diffusion_models": 2,
+        "loras": 8,
+        "text_encoders": 3,
+        "vae": 1
+      },
+      "civitai_sources": [
+        "file:/home/kenic/repositories/wan_comfyui_template/config/civitai_queues/runpod_default_loras.json (70 entries)"
+      ],
+      "warnings": [],
+      "counts": {
+        "workflows": 3,
+        "nodes": 20,
+        "models": 15,
+        "civitai_entries": 70
+      },
+      "model_targets": [
+        "diffusion_models/wan2.2_i2v_high_noise_14B_fp16.safetensors",
+        "diffusion_models/wan2.2_i2v_low_noise_14B_fp16.safetensors",
+        "text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+        "text_encoders/umt5-xxl-enc-bf16.safetensors",
+        "text_encoders/open-clip-xlm-roberta-large-vit-huge-14_visual_fp16.safetensors",
+        "clip_vision/clip_vision_h.safetensors",
+        "vae/wan_2.1_vae.safetensors",
+        "loras/wan2.2_i2v_A14b_high_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+        "loras/wan2.2_i2v_A14b_low_noise_lora_rank64_lightx2v_4step_720p_260412.safetensors",
+        "loras/Wan_2_2_I2V_A14B_HIGH_lightx2v_4step_lora_260412_rank_64_fp16.safetensors",
+        "loras/Wan_2_2_I2V_A14B_LOW_lightx2v_4step_lora_260412_rank_64_fp16.safetensors",
+        "loras/Wan_2_2_I2V_A14B_HIGH_lightx2v_4step_lora_260412_rank_256_fp16.safetensors",
+        "loras/Wan_2_2_I2V_A14B_LOW_lightx2v_4step_lora_260412_rank_256_fp16.safetensors",
+        "loras/SVI_v2_PRO_Wan2.2-I2V-A14B_HIGH_lora_rank_128_fp16.safetensors",
+        "loras/SVI_v2_PRO_Wan2.2-I2V-A14B_LOW_lora_rank_128_fp16.safetensors"
+      ]
+    }
+  ]
+}

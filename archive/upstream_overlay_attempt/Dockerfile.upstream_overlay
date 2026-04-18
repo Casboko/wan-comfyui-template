@@ -1,0 +1,106 @@
+FROM nvidia/cuda:12.8.1-cudnn-devel-ubuntu24.04 AS base
+
+ARG UPSTREAM_REPO=https://github.com/Hearmeman24/comfyui-wan.git
+ARG UPSTREAM_REF=8fadd7b70245a4437654d5af0017e4e9eca83fa9
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    PIP_PREFER_BINARY=1 \
+    PYTHONUNBUFFERED=1 \
+    CMAKE_BUILD_PARALLEL_LEVEL=8
+
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+        python3.12 python3.12-venv python3.12-dev \
+        python3-pip \
+        curl ffmpeg ninja-build git aria2 git-lfs wget vim \
+        libgl1 libglib2.0-0 build-essential gcc && \
+    ln -sf /usr/bin/python3.12 /usr/bin/python && \
+    ln -sf /usr/bin/pip3 /usr/bin/pip && \
+    python3.12 -m venv /opt/venv && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+ENV PATH="/opt/venv/bin:$PATH"
+
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip install --pre torch torchvision torchaudio \
+        --index-url https://download.pytorch.org/whl/nightly/cu128
+
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip install packaging setuptools wheel
+
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip install pyyaml gdown triton comfy-cli jupyterlab jupyterlab-lsp \
+        jupyter-server jupyter-server-terminals \
+        ipykernel jupyterlab_code_formatter
+
+RUN --mount=type=cache,target=/root/.cache/pip \
+    /usr/bin/yes | comfy --workspace /ComfyUI install
+
+RUN git clone "${UPSTREAM_REPO}" /comfyui-wan && \
+    git -C /comfyui-wan fetch --depth 1 origin "${UPSTREAM_REF}" && \
+    git -C /comfyui-wan checkout --detach FETCH_HEAD
+
+COPY overrides/ /opt/overrides/
+RUN if [ -d /opt/overrides/comfyui-wan ]; then \
+      cp -a /opt/overrides/comfyui-wan/. /comfyui-wan/; \
+    fi && \
+    test -f /comfyui-wan/src/start.sh && \
+    test -d /comfyui-wan/workflows
+
+FROM base AS final
+
+ENV PATH="/opt/venv/bin:$PATH"
+
+RUN pip install opencv-python
+
+RUN for repo in \
+    https://github.com/ssitu/ComfyUI_UltimateSDUpscale.git \
+    https://github.com/kijai/ComfyUI-KJNodes.git \
+    https://github.com/rgthree/rgthree-comfy.git \
+    https://github.com/JPS-GER/ComfyUI_JPS-Nodes.git \
+    https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git \
+    https://github.com/Jordach/comfy-plasma.git \
+    https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git \
+    https://github.com/bash-j/mikey_nodes.git \
+    https://github.com/ltdrdata/ComfyUI-Impact-Pack.git \
+    https://github.com/Fannovel16/comfyui_controlnet_aux.git \
+    https://github.com/yolain/ComfyUI-Easy-Use.git \
+    https://github.com/kijai/ComfyUI-Florence2.git \
+    https://github.com/ShmuelRonen/ComfyUI-LatentSyncWrapper.git \
+    https://github.com/WASasquatch/was-node-suite-comfyui.git \
+    https://github.com/theUpsider/ComfyUI-Logic.git \
+    https://github.com/cubiq/ComfyUI_essentials.git \
+    https://github.com/chrisgoringe/cg-image-picker.git \
+    https://github.com/chflame163/ComfyUI_LayerStyle.git \
+    https://github.com/chrisgoringe/cg-use-everywhere.git \
+    https://github.com/kijai/ComfyUI-segment-anything-2.git \
+    https://github.com/ClownsharkBatwing/RES4LYF \
+    https://github.com/welltop-cn/ComfyUI-TeaCache.git \
+    https://github.com/Fannovel16/ComfyUI-Frame-Interpolation.git \
+    https://github.com/Jonseed/ComfyUI-Detail-Daemon.git \
+    https://github.com/kijai/ComfyUI-WanVideoWrapper.git \
+    https://github.com/chflame163/ComfyUI_LayerStyle_Advance.git \
+    https://github.com/BadCafeCode/masquerade-nodes-comfyui.git \
+    https://github.com/1038lab/ComfyUI-RMBG.git \
+    https://github.com/M1kep/ComfyLiterals.git; \
+    do \
+        cd /ComfyUI/custom_nodes; \
+        repo_dir=$(basename "$repo" .git); \
+        if [ "$repo" = "https://github.com/ssitu/ComfyUI_UltimateSDUpscale.git" ]; then \
+            git clone --recursive "$repo"; \
+        else \
+            git clone "$repo"; \
+        fi; \
+        if [ -f "/ComfyUI/custom_nodes/$repo_dir/requirements.txt" ]; then \
+            pip install -r "/ComfyUI/custom_nodes/$repo_dir/requirements.txt"; \
+        fi; \
+        if [ -f "/ComfyUI/custom_nodes/$repo_dir/install.py" ]; then \
+            python "/ComfyUI/custom_nodes/$repo_dir/install.py"; \
+        fi; \
+    done
+
+RUN cp /comfyui-wan/4xLSDIR.pth /4xLSDIR.pth && \
+    chmod +x /comfyui-wan/src/start.sh
+
+CMD ["/bin/bash", "/comfyui-wan/src/start.sh"]
