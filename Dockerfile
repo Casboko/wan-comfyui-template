@@ -1,5 +1,7 @@
 FROM runpod/pytorch:1.0.2-cu1281-torch280-ubuntu2404
 
+ARG COMFYUI_REF=3086026401180c9216bcb6ace442a4e3587d2c66
+
 ENV DEBIAN_FRONTEND=noninteractive \
     PIP_PREFER_BINARY=1 \
     PIP_NO_CACHE_DIR=1 \
@@ -23,6 +25,30 @@ RUN pip install \
       jupyter-server jupyter-server-terminals \
       ipykernel jupyterlab_code_formatter \
       requests huggingface_hub pyyaml gdown
+
+RUN git init /opt/ComfyUI && \
+    cd /opt/ComfyUI && \
+    git remote add origin https://github.com/comfyanonymous/ComfyUI && \
+    git fetch --depth 1 origin "${COMFYUI_REF}" && \
+    git checkout --detach FETCH_HEAD
+
+RUN python3 - <<'PY' > /tmp/comfyui-core-requirements.txt
+from pathlib import Path
+req = Path("/opt/ComfyUI/requirements.txt").read_text().splitlines()
+for line in req:
+    s = line.strip()
+    if not s:
+        continue
+    if s.startswith("#"):
+        print(line)
+        continue
+    name = s.split("==")[0].split(">=")[0].split("~=")[0]
+    if name in {"torch", "torchvision", "torchaudio"}:
+        continue
+    print(line)
+PY
+
+RUN pip install -r /tmp/comfyui-core-requirements.txt && rm -f /tmp/comfyui-core-requirements.txt
 
 COPY scripts/ /opt/template-scripts/
 COPY config/ /opt/template-config/

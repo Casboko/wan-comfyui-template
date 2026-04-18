@@ -4,6 +4,7 @@ set -euo pipefail
 TEMPLATE_CONFIG_ROOT="/opt/template-config"
 TEMPLATE_SCRIPT_ROOT="/opt/template-scripts"
 TEMPLATE_WORKFLOW_ROOT="/opt/template-workflows"
+COMFYUI_IMAGE_ROOT="/opt/ComfyUI"
 NETWORK_VOLUME="${NETWORK_VOLUME:-/workspace}"
 COMFYUI_DIR="${COMFYUI_BASE:-$NETWORK_VOLUME/ComfyUI}"
 WORKFLOW_DIR="${COMFYUI_DIR}/user/default/workflows"
@@ -83,9 +84,14 @@ ensure_comfyui_workspace() {
   if [ -f "$COMFYUI_DIR/main.py" ]; then
     return
   fi
-  log "ComfyUI workspace not found, installing into ${COMFYUI_DIR}"
+  if [ ! -f "$COMFYUI_IMAGE_ROOT/main.py" ]; then
+    log "Bundled ComfyUI image root is missing: ${COMFYUI_IMAGE_ROOT}"
+    return 1
+  fi
+  log "ComfyUI workspace not found, copying bundled tree into ${COMFYUI_DIR}"
   rm -rf "$COMFYUI_DIR"
-  bash -lc 'comfy --skip-prompt --no-enable-telemetry --workspace "$1" install --nvidia --skip-manager --skip-torch-or-directml' _ "$COMFYUI_DIR"
+  mkdir -p "$(dirname "$COMFYUI_DIR")"
+  cp -a "$COMFYUI_IMAGE_ROOT" "$COMFYUI_DIR"
 }
 
 copy_template_workflows() {
