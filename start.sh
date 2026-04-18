@@ -5,6 +5,8 @@ TEMPLATE_CONFIG_ROOT="/opt/template-config"
 TEMPLATE_SCRIPT_ROOT="/opt/template-scripts"
 TEMPLATE_WORKFLOW_ROOT="/opt/template-workflows"
 COMFYUI_IMAGE_ROOT="/opt/ComfyUI"
+TEMPLATE_NODE_CACHE_ROOT="/opt/template-node-cache"
+TEMPLATE_SAGEATTENTION_ROOT="/opt/SageAttention"
 NETWORK_VOLUME="${NETWORK_VOLUME:-/workspace}"
 COMFYUI_DIR="${COMFYUI_BASE:-$NETWORK_VOLUME/ComfyUI}"
 WORKFLOW_DIR="${COMFYUI_DIR}/user/default/workflows"
@@ -77,6 +79,7 @@ run_additional_params() {
 ensure_workspace_layout() {
   mkdir -p "$NETWORK_VOLUME"
   ensure_comfyui_workspace
+  seed_bundled_nodes
   mkdir -p "$WORKFLOW_DIR"
 }
 
@@ -92,6 +95,25 @@ ensure_comfyui_workspace() {
   rm -rf "$COMFYUI_DIR"
   mkdir -p "$(dirname "$COMFYUI_DIR")"
   cp -a "$COMFYUI_IMAGE_ROOT" "$COMFYUI_DIR"
+}
+
+seed_bundled_nodes() {
+  local dst_root="${COMFYUI_DIR}/custom_nodes"
+  mkdir -p "$dst_root"
+  if [ ! -d "$TEMPLATE_NODE_CACHE_ROOT" ]; then
+    return
+  fi
+  find "$TEMPLATE_NODE_CACHE_ROOT" -mindepth 1 -maxdepth 1 -type d -print0 | while IFS= read -r -d '' src; do
+    local name
+    local dst
+    name="$(basename "$src")"
+    dst="${dst_root}/${name}"
+    if [ -e "$dst" ]; then
+      continue
+    fi
+    cp -a "$src" "$dst"
+    log "Seeded bundled node: ${name}"
+  done
 }
 
 copy_template_workflows() {
@@ -139,15 +161,21 @@ install_sageattention_if_enabled() {
     return
   fi
   log "Installing SageAttention"
+  if [ ! -d "$TEMPLATE_SAGEATTENTION_ROOT" ]; then
+    log "Bundled SageAttention source is missing: ${TEMPLATE_SAGEATTENTION_ROOT}"
+    return
+  fi
   rm -rf /tmp/SageAttention
-  git clone https://github.com/thu-ml/SageAttention.git /tmp/SageAttention
-  (
+  cp -a "$TEMPLATE_SAGEATTENTION_ROOT" /tmp/SageAttention
+  if (
     cd /tmp/SageAttention
-    git reset --hard 68de379
     export EXT_PARALLEL=4 NVCC_APPEND_FLAGS="--threads 8" MAX_JOBS=32
-    python3 -m pip install -e .
-  )
-  export COMFYUI_EXTRA_ARGS="${COMFYUI_EXTRA_ARGS:-} --use-sage-attention"
+    python3 -m pip install --no-build-isolation -e .
+  ); then
+    export COMFYUI_EXTRA_ARGS="${COMFYUI_EXTRA_ARGS:-} --use-sage-attention"
+  else
+    log "SageAttention install failed; continuing without --use-sage-attention"
+  fi
 }
 
 run_node_phase() {

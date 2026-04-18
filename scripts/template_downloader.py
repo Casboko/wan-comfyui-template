@@ -245,6 +245,18 @@ def _clone_or_update(repo_url: str, dst: Path, ref: str, force: bool) -> str:
     if force and dst.exists():
         shutil.rmtree(dst, ignore_errors=True)
     if dst.exists():
+        git_dir = dst / ".git"
+        if git_dir.exists():
+            try:
+                current = subprocess.check_output(
+                    ["git", "-C", str(dst), "rev-parse", "HEAD"],
+                    text=True,
+                    timeout=NODES_TIMEOUT,
+                ).strip()
+                if current == ref:
+                    return "exists"
+            except Exception:
+                pass
         subprocess.check_call(["git", "-C", str(dst), "fetch", "--depth", "1", "origin", ref], timeout=NODES_TIMEOUT)
         subprocess.check_call(["git", "-C", str(dst), "checkout", "--force", "FETCH_HEAD"], timeout=NODES_TIMEOUT)
         return "updated"
@@ -290,7 +302,10 @@ def _download_zip(repo_url: str, ref: str, dst: Path) -> str:
 def _pip_install_requirements(node_dir: Path) -> None:
     req = node_dir / "requirements.txt"
     if req.exists() and NODES_PIP_INSTALL:
-        subprocess.check_call([sys.executable, "-m", "pip", "install", "-U", "-r", str(req)], timeout=NODES_TIMEOUT)
+        subprocess.check_call(
+            [sys.executable, "-m", "pip", "install", "--no-build-isolation", "-U", "-r", str(req)],
+            timeout=NODES_TIMEOUT,
+        )
     install_py = node_dir / "install.py"
     if install_py.exists():
         subprocess.check_call([sys.executable, str(install_py)], timeout=NODES_TIMEOUT)

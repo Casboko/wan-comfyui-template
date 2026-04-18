@@ -1,6 +1,7 @@
 FROM runpod/pytorch:1.0.2-cu1281-torch280-ubuntu2404
 
 ARG COMFYUI_REF=3086026401180c9216bcb6ace442a4e3587d2c66
+ARG SAGEATTENTION_REF=68de379
 
 ENV DEBIAN_FRONTEND=noninteractive \
     PIP_PREFER_BINARY=1 \
@@ -50,8 +51,35 @@ PY
 
 RUN pip install -r /tmp/comfyui-core-requirements.txt && rm -f /tmp/comfyui-core-requirements.txt
 
-COPY scripts/ /opt/template-scripts/
 COPY config/ /opt/template-config/
+
+RUN python3 - <<'PY'
+import json
+import pathlib
+import subprocess
+
+manifest_path = pathlib.Path("/opt/template-config/manifests/custom_nodes.json")
+cache_root = pathlib.Path("/opt/template-node-cache")
+cache_root.mkdir(parents=True, exist_ok=True)
+
+for item in json.loads(manifest_path.read_text()):
+    if not item.get("enabled", True):
+        continue
+    dst = cache_root / item["name"]
+    if dst.exists():
+        continue
+    subprocess.check_call(["git", "clone", "--depth", "1", item["repo"], str(dst)])
+    subprocess.check_call(["git", "-C", str(dst), "fetch", "--depth", "1", "origin", item["ref"]])
+    subprocess.check_call(["git", "-C", str(dst), "checkout", "--force", "FETCH_HEAD"])
+PY
+
+RUN git init /opt/SageAttention && \
+    cd /opt/SageAttention && \
+    git remote add origin https://github.com/thu-ml/SageAttention.git && \
+    git fetch --depth 1 origin "${SAGEATTENTION_REF}" && \
+    git checkout --detach FETCH_HEAD
+
+COPY scripts/ /opt/template-scripts/
 COPY template_workflows/ /opt/template-workflows/
 COPY start.sh /start.sh
 

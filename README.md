@@ -143,7 +143,7 @@ python3 scripts/preset_audit.py --md-out reports/preset_audit.md --json-out repo
 
 RunPod で一番扱いやすいのは public GHCR image です。private image でも使えますが、RunPod template 側で registry credentials の設定が必要になります。
 
-この image は `ComfyUI` 本体を image 内に同梱します。初回 Pod 起動時は image 内の `/opt/ComfyUI` を `/workspace/ComfyUI` へコピーするだけなので、RunPod 側で `github.com` へ到達できない環境でも起動できます。2回目以降は `/workspace` の Network Volume を再利用します。
+この image は `ComfyUI` 本体に加えて、template manifest に入っている custom node source と `SageAttention` source も image 内に同梱します。初回 Pod 起動時は image 内の `/opt/ComfyUI` と `/opt/template-node-cache` を `/workspace` 側へ展開するだけなので、RunPod 側で `github.com` へ到達できない環境でも起動できます。2回目以降は `/workspace` の Network Volume を再利用します。
 
 CivitAI LoRA の追加取得:
 
