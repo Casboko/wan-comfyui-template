@@ -85,8 +85,7 @@ ensure_comfyui_workspace() {
   fi
   log "ComfyUI workspace not found, installing into ${COMFYUI_DIR}"
   rm -rf "$COMFYUI_DIR"
-  mkdir -p "$COMFYUI_DIR"
-  bash -lc 'set +o pipefail; /usr/bin/yes | comfy --workspace "$1" install' _ "$COMFYUI_DIR"
+  bash -lc 'comfy --skip-prompt --no-enable-telemetry --workspace "$1" install --nvidia --skip-manager --skip-torch-or-directml' _ "$COMFYUI_DIR"
 }
 
 copy_template_workflows() {
