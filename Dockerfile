@@ -24,8 +24,6 @@ RUN pip install \
       ipykernel jupyterlab_code_formatter \
       requests huggingface_hub pyyaml gdown
 
-RUN bash -lc 'set +o pipefail; /usr/bin/yes | comfy --workspace /ComfyUI install'
-
 COPY scripts/ /opt/template-scripts/
 COPY config/ /opt/template-config/
 COPY template_workflows/ /opt/template-workflows/

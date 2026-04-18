@@ -75,10 +75,18 @@ run_additional_params() {
 
 ensure_workspace_layout() {
   mkdir -p "$NETWORK_VOLUME"
-  if [ ! -d "$COMFYUI_DIR" ]; then
-    mv /ComfyUI "$COMFYUI_DIR"
-  fi
+  ensure_comfyui_workspace
   mkdir -p "$WORKFLOW_DIR"
+}
+
+ensure_comfyui_workspace() {
+  if [ -f "$COMFYUI_DIR/main.py" ]; then
+    return
+  fi
+  log "ComfyUI workspace not found, installing into ${COMFYUI_DIR}"
+  rm -rf "$COMFYUI_DIR"
+  mkdir -p "$COMFYUI_DIR"
+  bash -lc 'set +o pipefail; /usr/bin/yes | comfy --workspace "$1" install' _ "$COMFYUI_DIR"
 }
 
 copy_template_workflows() {
