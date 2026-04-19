@@ -70,8 +70,18 @@ def _load_settings_env(path: Path | None) -> Path:
     resolved = _resolve_template_path(resolved)
     loaded = _parse_settings_file(resolved)
     if loaded:
-        os.environ.update(loaded)
-        print(f"[INFO] Loaded {len(loaded)} settings from {resolved}")
+        applied = 0
+        preserved = 0
+        for key, value in loaded.items():
+            if key in os.environ:
+                preserved += 1
+                continue
+            os.environ[key] = value
+            applied += 1
+        message = f"[INFO] Loaded {applied}/{len(loaded)} settings from {resolved}"
+        if preserved:
+            message += f" (preserved {preserved} existing env values)"
+        print(message)
     else:
         print(f"[INFO] Settings file not found or empty: {resolved}")
     return resolved

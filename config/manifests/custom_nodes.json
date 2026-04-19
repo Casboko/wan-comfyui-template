@@ -95,7 +95,7 @@
     "repo": "https://github.com/alt-key-project/comfyui-dream-video-batches.git",
     "ref": "b418aad910fe55877e04fc9a590eef8904537ac7",
     "enabled": true,
-    "groups": ["workflow_wan22_i2v", "default_extra_nodes"],
+    "groups": ["workflow_wan22_i2v", "optional_dream_video_batches"],
     "pip_install": true
   },
   {
